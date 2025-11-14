@@ -8,14 +8,11 @@ export default defineUserConfig({
   description: '楠渡余生 的个人博客',
 
   // GitHub Pages 部署配置
-  // 如果部署到 https://<USERNAME>.github.io/<REPO>/
-  // 则将 base 设置为 '/<REPO>/'
-  // 例如：base: '/blogs/'
   base: '/',
 
   // 网站图标配置
   head: [
-    ['link', { rel: 'icon', href: '/bg.png' }],
+    ['link', { rel: 'icon', href: '/bg.jpg' }],
   ],
 
   bundler: viteBundler(),
@@ -39,7 +36,7 @@ export default defineUserConfig({
       },
       {
         text: 'GitHub',
-        link: 'https://github.com',
+        link: 'https://github.com/zephyrnan',
       },
     ],
 

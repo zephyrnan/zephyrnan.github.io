@@ -32,9 +32,9 @@
 
 ## 联系方式
 
-- **GitHub**: [your-github](https://github.com)
+- **GitHub**: [zephyrnan](https://github.com/zephyrnan)
 - **Email**: 2764304248@qq.com
-- **掘金**: [your-juejin](https://juejin.cn)
+- **博客**: [https://zephyrnan.github.io](https://zephyrnan.github.io)
 
 ## 关于本站
 
@@ -98,4 +98,4 @@
 
 ---
 
-*最后更新: 2024-01-12*
+*最后更新: 2024-11-14*
