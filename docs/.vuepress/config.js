@@ -10,22 +10,22 @@ export default defineUserConfig({
   // GitHub Pages 部署配置
   base: '/',
 
-  // 网站图标和统计配置
+  // 网站图标配置
   head: [
     ['link', { rel: 'icon', href: '/bg.jpg' }],
     
-    // 百度统计
-    // 请将 YOUR_BAIDU_ANALYTICS_ID 替换为你的百度统计 ID
+    // 百度统计（已临时禁用以消除错误）
+    // 如需启用，请取消下方注释并替换 YOUR_BAIDU_ANALYTICS_ID
     // 获取方法见：BAIDU-ANALYTICS-CONFIG.md
-    ['script', {}, `
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?YOUR_BAIDU_ANALYTICS_ID";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    `],
+    // ['script', {}, `
+    //   var _hmt = _hmt || [];
+    //   (function() {
+    //     var hm = document.createElement("script");
+    //     hm.src = "https://hm.baidu.com/hm.js?YOUR_BAIDU_ANALYTICS_ID";
+    //     var s = document.getElementsByTagName("script")[0];
+    //     s.parentNode.insertBefore(hm, s);
+    //   })();
+    // `],
   ],
 
   bundler: viteBundler(),
