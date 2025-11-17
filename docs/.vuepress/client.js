@@ -1,7 +1,12 @@
 import { defineClientConfig } from '@vuepress/client'
+import ValineComment from './components/ValineComment.vue'
 import { onMounted } from 'vue'
 
 export default defineClientConfig({
+  enhance({ app }) {
+    app.component('ValineComment', ValineComment)
+    console.log('✅ ValineComment 组件已注册')
+  },
   setup() {
     onMounted(() => {
       console.log('🎨 特效初始化开始...')
