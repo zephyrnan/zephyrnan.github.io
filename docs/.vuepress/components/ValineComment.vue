@@ -30,15 +30,15 @@ const initValine = async () => {
     // Valine 配置
     new Valine({
       el: '#vcomments',
-      appId: 'sLLFTcoWHCJVJOdd9UsscnGE-gzGzoHs', // LeanCloud AppID
+      appId: 'sLLFTcoWHCJVJOdd9UsscnGE-gzGzoHsz', // LeanCloud AppID
       appKey: 'NcwfyGUEwWLSt8fu7uCcglXC', // LeanCloud AppKey
-      placeholder: '留下你的评论吧~ 支持 Markdown 语法',
+      placeholder: '留下你的评论吧~ 支��� Markdown 语法',
       avatar: 'robohash',
       pageSize: 10,
       visitor: true, // 文章访问量统计
       highlight: true, // 代码高亮
       recordIP: true, // 记录IP
-      serverURLs: '', // 国内版不需要填写
+      serverURLs: 'https://sllftcow.lc-cn-n1-shared.com', // LeanCloud 服务器地址
       path: page.value.path,
       lang: 'zh-CN',
       enableQQ: false,
@@ -95,17 +95,12 @@ watch(() => page.value.path, () => {
 <style scoped>
 .comment-section {
   margin-top: 50px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .debug-info {
-  color: #28a745;
-  font-size: 14px;
-  padding: 10px;
-  background: #d4edda;
-  border: 1px solid #c3e6cb;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  text-align: center;
+  display: none; /* 隐藏调试信息 */
 }
 
 .valine-wrapper {
@@ -113,11 +108,57 @@ watch(() => page.value.path, () => {
   padding-top: 20px;
   border-top: 2px solid var(--c-border);
   min-height: 200px;
+  width: 100%;
 }
 
-@media (max-width: 719px) {
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .comment-section {
+    margin-top: 40px;
+    padding: 0 10px;
+  }
+
   .valine-wrapper {
-    margin-top: 30px;
+    margin-top: 15px;
+    padding-top: 15px;
+  }
+}
+
+/* Valine 移动端样式优化 */
+:deep(.valine-wrapper) {
+  width: 100% !important;
+}
+
+:deep(.valine .vwrap) {
+  width: 100% !important;
+}
+
+:deep(.valine .veditor) {
+  min-height: 120px !important;
+}
+
+@media (max-width: 768px) {
+  :deep(.valine .vwrap) {
+    padding: 10px !important;
+  }
+
+  :deep(.valine .veditor) {
+    min-height: 100px !important;
+    font-size: 14px !important;
+  }
+
+  :deep(.valine .vbtn) {
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+  }
+
+  :deep(.valine .vinfo) {
+    flex-direction: column !important;
+  }
+
+  :deep(.valine .vinfo input) {
+    width: 100% !important;
+    margin-bottom: 10px !important;
   }
 }
 </style>

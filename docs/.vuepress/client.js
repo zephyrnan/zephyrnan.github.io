@@ -1,11 +1,14 @@
 import { defineClientConfig } from '@vuepress/client'
 import ValineComment from './components/ValineComment.vue'
+import PostCard from './components/PostCard.vue'
 import { onMounted } from 'vue'
 
 export default defineClientConfig({
   enhance({ app }) {
     app.component('ValineComment', ValineComment)
+    app.component('PostCard', PostCard)
     console.log('✅ ValineComment 组件已注册')
+    console.log('✅ PostCard 组件已注册')
   },
   setup() {
     onMounted(() => {
@@ -16,6 +19,7 @@ export default defineClientConfig({
 
       // 点击特效
       const initClickEffect = () => {
+        if (document.getElementById("click-effect-container")) return
         const container = document.createElement('div')
         container.id = 'click-effect-container'
         container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;'
@@ -39,6 +43,7 @@ export default defineClientConfig({
 
       // 背景粒子特效（性能优化版）
       const initBackgroundEffect = () => {
+        if (document.getElementById("bg-canvas")) return
         const canvas = document.createElement('canvas')
         canvas.id = 'bg-canvas'
         canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.8;'
@@ -128,6 +133,10 @@ export default defineClientConfig({
 
       // 返回顶部按钮
       const initBackToTop = () => {
+        // 移除所有可能存在的旧按钮（防止重复）
+        const oldButtons = document.querySelectorAll('#back-to-top')
+        oldButtons.forEach(btn => btn.remove())
+
         const btn = document.createElement('div')
         btn.id = 'back-to-top'
         btn.innerHTML = '↑'
@@ -178,6 +187,7 @@ export default defineClientConfig({
 
       // 页面加载进度条
       const initProgressBar = () => {
+        if (document.getElementById("reading-progress")) return
         const bar = document.createElement('div')
         bar.id = 'reading-progress'
         bar.style.cssText = `
@@ -203,7 +213,9 @@ export default defineClientConfig({
       }
 
       // 添加动画样式
-      const style = document.createElement('style')
+      const initStyles = () => {
+        if (document.getElementById("custom-effects-style")) return
+        const style = document.createElement('style')
       style.textContent = `
         @keyframes riseAndFade {
           0% { transform: translateY(0) scale(1); opacity: 1; }
@@ -227,16 +239,22 @@ export default defineClientConfig({
           }
         }
       `
-      document.head.appendChild(style)
+      style.id = "custom-effects-style"
+        document.head.appendChild(style)
+        console.log("✅ 自定义样式已加载")
+      }
+
+      
+        initStyles()
 
       // 延迟初始化，确保DOM完全加载
       setTimeout(() => {
+        initStyles()
         initClickEffect()
         if (!isMobile || window.innerWidth >= 1024) {
           // 大屏幕或桌面设备才启用粒子效果
           initBackgroundEffect()
         }
-        initBackToTop()
         initProgressBar()
         console.log('🎉 所有特效初始化完成！')
       }, 100)

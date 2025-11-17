@@ -40,7 +40,7 @@ export default defineUserConfig({
         link: '/',
       },
       {
-        text: '博客',
+        text: '笔记',
         link: '/posts/',
       },
       {
