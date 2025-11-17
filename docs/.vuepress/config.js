@@ -81,6 +81,7 @@ export default defineUserConfig({
           children: [
             '/posts/GitHub新手完全指南.md',
             '/posts/个人博客搭建指南.md',
+            '/posts/个人博客搭建指南.md',
           ],
         },
       ],
