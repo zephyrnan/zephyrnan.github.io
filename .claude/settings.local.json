@@ -34,7 +34,12 @@
       "Bash(git add docs/posts/)",
       "Bash(git commit -m \"feat: add comment component to all 12 articles\n\n- Add Valine comment section to all blog posts\n- Include comment prompt message\n- Enable user interaction on all articles\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
       "Bash(git pull origin main --no-rebase)",
-      "Bash(git commit -m \"fix: improve Valine comment component with debug info\n\n- Add visual confirmation when component loads\n- Add detailed console logging\n- Show error messages if loading fails  \n- Better error handling and user feedback\n- Add troubleshooting documentation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")"
+      "Bash(git commit -m \"fix: improve Valine comment component with debug info\n\n- Add visual confirmation when component loads\n- Add detailed console logging\n- Show error messages if loading fails  \n- Better error handling and user feedback\n- Add troubleshooting documentation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\ndocs: update blog guide with latest deployment info\n\n- Update document version to 1.1\n- Update last modified date to 2024-11-17\n- Rename COMPLETE-DOCUMENTATION.md to 博客指南.md\n- Add latest updates section with deployment status\n- Document Git branch workflow (source/main)\n- Add quick reminder for development workflow\n\nChanges:\n- Renamed: COMPLETE-DOCUMENTATION.md → 博客指南.md\n- Added: Latest updates section (2024-11-17)\n- Updated: Document version and date\n- Updated: Project structure (removed old docs)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push origin source)",
+      "Bash(git commit -m \"fix: update year to 2025 in documentation\")",
+      "Bash(git add .claude/settings.local.json)",
+      "Bash(git commit -m \"chore: update Claude Code settings with new allowed commands\n\n- Add recent git commands to allowedCommands list\n- Include documentation update and deployment commands\n- Update settings for better workflow automation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")"
     ],
     "deny": [],
     "ask": []
