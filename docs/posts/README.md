@@ -208,6 +208,7 @@
     </div>
     <div class="card-arrow">→</div>
   </a>
+<a href="/posts/个人博客搭建指南.html" class="post-card">    <div class="card-icon">📝</div>    <div class="card-content">      <div class="card-title">个人博客搭建指南</div>      <div class="card-desc">VuePress 2.0 博客从零搭建教程,环境准备、部署上线、功能扩展完整指南</div>    </div>    <div class="card-arrow">→</div>  </a>
 </div>
 
 ---
