@@ -107,6 +107,7 @@ export default defineUserConfig({
             '/posts/nodejs/Node.js-HTTP模块.md',
             '/posts/nodejs/Node.js-Express框架.md',
             '/posts/nodejs/Node.js-MongoDB数据库.md',
+            '/posts/nodejs/MongoDB数据库基础使用.md',
           ],
         },
         {
