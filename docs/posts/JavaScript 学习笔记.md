@@ -1,3 +1,12 @@
+---
+title: JavaScript 学习笔记
+date: 2025-11-20
+categories:
+  - 前端开发
+tags:
+  - JavaScript
+---
+
 # JavaScript 学习笔记
 
 [🪩 尚硅谷JavaScript基础&实战丨JS入门到精通全套完整版](https://www.bilibili.com/video/BV1YW411T7GX)

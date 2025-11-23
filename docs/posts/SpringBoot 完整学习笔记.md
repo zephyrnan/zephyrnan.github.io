@@ -1,3 +1,13 @@
+---
+title: SpringBoot 完整学习笔记
+date: 2025-11-20
+categories:
+  - 后端开发
+tags:
+  - Java
+  - SpringBoot
+---
+
 # SpringBoot 完整学习笔记
 
 > Spring Boot 是由 Pivotal 团队提供的全新框架,旨在简化 Spring 应用的初始搭建和开发过程。本笔记涵盖从基础入门到企业级应用开发的完整内容。

@@ -1,3 +1,12 @@
+---
+title: Node.js 模块化设计
+date: 2025-11-20
+categories:
+  - 后端开发
+tags:
+  - Node.js
+---
+
 # Node.js 模块化设计
 
 ## 1. 概述

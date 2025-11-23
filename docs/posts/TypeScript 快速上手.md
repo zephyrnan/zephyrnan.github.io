@@ -1,3 +1,12 @@
+---
+title: TypeScript 快速上手
+date: 2025-11-20
+categories:
+  - 前端开发
+tags:
+  - TypeScript
+---
+
 #    TypeScript 快速上手
 
 [🪩 禹神：三小时快速上手TypeScript，TS速通教程_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1YS411w7Bf/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=eec8d29cc9562259bc3afddcb56823bd)

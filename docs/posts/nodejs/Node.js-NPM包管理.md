@@ -1,3 +1,13 @@
+---
+title: Node.js NPM 包管理
+date: 2025-11-20
+categories:
+  - 后端开发
+tags:
+  - Node.js
+  - NPM
+---
+
 # Node.js NPM 包管理
 
 ## 1. NPM 简介

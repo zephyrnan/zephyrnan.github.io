@@ -1,3 +1,13 @@
+---
+title: Promise 学习笔记
+date: 2025-11-20
+categories:
+  - 前端开发
+tags:
+  - JavaScript
+  - Promise
+---
+
 # Promise 学习笔记
 
 ## 前言

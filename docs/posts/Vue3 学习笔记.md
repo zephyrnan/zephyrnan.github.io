@@ -1,3 +1,13 @@
+---
+title: Vue3 学习笔记
+date: 2025-11-20
+categories:
+  - 前端开发
+tags:
+  - Vue3
+  - TypeScript
+---
+
 # Vue3 学习笔记
 
 [🪩 尚硅谷Vue3入门到实战，最新版vue3+TypeScript前端开发教程](https://www.bilibili.com/video/BV1Za4y1r7KE)

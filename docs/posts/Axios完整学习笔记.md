@@ -1,3 +1,14 @@
+---
+title: Axios 完整学习笔记
+date: 2025-11-20
+categories:
+  - 前端开发
+tags:
+  - JavaScript
+  - Axios
+  - HTTP
+---
+
 # Axios 完整学习笔记
 
 > Axios 是一个基于 Promise 的 HTTP 客户端，适用于浏览器和 Node.js 环境。本笔记涵盖从基础使用到高级特性、源码实现的完整内容。
