@@ -91,6 +91,7 @@ export default defineUserConfig({
             '/posts/Vue3 学习笔记.md',
             '/posts/HTML5 与 CSS 综合学习笔记.md',
             '/posts/CSS 属性速查手册.md',
+            '/posts/Tailwind-CSS-笔记.md',
             '/posts/AJAX 学习笔记.md',
             '/posts/Promise 学习笔记.md',
             '/posts/Axios完整学习笔记.md',

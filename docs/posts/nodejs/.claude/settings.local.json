@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(git fetch origin)",
+      "Bash(git ls-tree -r --name-only origin/main docs/posts/)",
+      "Bash(git ls-tree -r --name-only HEAD docs/posts/)",
+      "Bash(git ls-tree -r --name-only origin/main)",
+      "Bash(git checkout main)",
+      "Bash(git stash)",
+      "Bash(git checkout source)",
+      "Bash(bash deploy.sh)",
+      "Bash(git stash pop)",
+      "Bash(cat docs/.vuepress/config.js)",
+      "Bash(md5sum)",
+      "Bash(git add docs/.vuepress/config.js)",
+      "Bash(git commit -m \"feat: 添加MongoDB常用命令速查表到侧边栏\n\n- 在 Node.js 深入学习栏目添加「MongoDB数据库基础使用.md」\n- 文章标题：MongoDB 常用命令速查表\n- 涵盖终端命令、Shell操作、Mongoose方法等实用内容\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
+      "Bash(git push origin source)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

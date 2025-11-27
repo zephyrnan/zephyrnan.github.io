@@ -142,7 +142,16 @@
     <div class="card-icon">📖</div>
     <div class="card-content">
       <div class="card-title">CSS 属性速查手册</div>
-      <div class="card-desc">常用 CSS 属性快速查询，包含盒模型、定位、弹性布局、网格布局等</div>
+      <div class="card-desc">常用 CSS 属性快速查询,包含盒模型、定位、弹性布局、网格布局等</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="/posts/Tailwind-CSS-笔记.html" class="post-card">
+    <div class="card-icon">🎨</div>
+    <div class="card-content">
+      <div class="card-title">Tailwind CSS 完整笔记</div>
+      <div class="card-desc">功能类优先的 CSS 框架，涵盖布局、间距、颜色、响应式设计等完整教程</div>
     </div>
     <div class="card-arrow">→</div>
   </a>
@@ -235,8 +244,17 @@
   <a href="/posts/nodejs/Node.js-MongoDB数据库.html" class="post-card">
     <div class="card-icon">🍃</div>
     <div class="card-content">
-      <div class="card-title">Node.js MongoDB 数据库</div>
-      <div class="card-desc">MongoDB 基础、Mongoose ODM、数据模型设计、CRUD 操作、聚合查询、性能优化</div>
+      <div class="card-title">Node.js + MongoDB 生产级最佳实践指南</div>
+      <div class="card-desc">MongoDB 与 Node.js 集成、Mongoose ODM、数据模型设计、CRUD 操作、聚合查询、性能优化与生产部署</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="/posts/nodejs/MongoDB数据库基础使用.html" class="post-card">
+    <div class="card-icon">📋</div>
+    <div class="card-content">
+      <div class="card-title">MongoDB 常用命令速查表</div>
+      <div class="card-desc">MongoDB Shell 命令大全、数据库操作、集合管理、文档 CRUD、索引优化、聚合管道常用语法</div>
     </div>
     <div class="card-arrow">→</div>
   </a>

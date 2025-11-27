@@ -1,7 +1,6 @@
 ---
 home: true
 heroImage: /bg.jpg
-heroText: Zephyrnan's Tech Blog
 tagline: 分享前端与后端开发学习笔记
 actions:
   - text: 📚 浏览文章

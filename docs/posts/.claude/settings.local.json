@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(git add \"docs/posts/*.md\")",
+      "Bash(git add \"docs/posts/nodejs/*.md\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfix: 为所有文档添加 frontmatter 格式\n\n- 为 posts 目录下所有 markdown 文档添加 YAML frontmatter\n- 包含 title、date、categories 和 tags 字段\n- 修复文档格式以符合 VuePress 规范\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
