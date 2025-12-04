@@ -176,7 +176,7 @@ title: 作品集
 <!-- Web 协同画板 -->
 <div class="portfolio-item">
   <div class="portfolio-media">
-    <img src="/docs/.vuepress/public/portfolio/web.png" alt="Web协同画板截图" />
+    <img src="/portfolio/web.png" alt="Web协同画板截图" />
   </div>
   <div class="portfolio-content">
     <h3 class="portfolio-title">Web 协同画板</h3>
