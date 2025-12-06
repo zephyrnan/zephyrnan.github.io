@@ -1,0 +1,180 @@
+[
+  {
+    "text": "前端开发",
+    "collapsible": true,
+    "children": [
+      {
+        "text": "AJAX 学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/AJAX 学习笔记.md"
+        ]
+      },
+      {
+        "text": "Axios 完整学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/Axios完整学习笔记.md"
+        ]
+      },
+      {
+        "text": "CSS 属性速查手册",
+        "collapsible": true,
+        "children": [
+          "/posts/CSS 属性速查手册.md"
+        ]
+      },
+      {
+        "text": "HTML5 与 CSS 综合学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/HTML5 与 CSS 综合学习笔记.md"
+        ]
+      },
+      {
+        "text": "JavaScript 学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/JavaScript 学习笔记.md"
+        ]
+      },
+      {
+        "text": "Promise 学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/Promise 学习笔记.md"
+        ]
+      },
+      {
+        "text": "Tailwind CSS 完整笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/Tailwind-CSS-笔记.md"
+        ]
+      },
+      {
+        "text": "TypeScript 快速上手",
+        "collapsible": true,
+        "children": [
+          "/posts/TypeScript 快速上手.md"
+        ]
+      },
+      {
+        "text": "Vue3 学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/Vue3 学习笔记.md"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Node.js 深入学习",
+    "collapsible": true,
+    "children": [
+      {
+        "text": "MongoDB 常用命令速查表",
+        "collapsible": true,
+        "children": [
+          "/posts/nodejs/MongoDB数据库基础使用.md"
+        ]
+      },
+      {
+        "text": "Node.js + MongoDB 生产级最佳实践指南",
+        "collapsible": true,
+        "children": [
+          "/posts/nodejs/Node.js-MongoDB数据库.md"
+        ]
+      },
+      {
+        "text": "Node.js Express 框架",
+        "collapsible": true,
+        "children": [
+          "/posts/nodejs/Node.js-Express框架.md"
+        ]
+      },
+      {
+        "text": "Node.js HTTP 模块",
+        "collapsible": true,
+        "children": [
+          "/posts/nodejs/Node.js-HTTP模块.md"
+        ]
+      },
+      {
+        "text": "Node.js NPM 包管理",
+        "collapsible": true,
+        "children": [
+          "/posts/nodejs/Node.js-NPM包管理.md"
+        ]
+      },
+      {
+        "text": "Node.js 文件系统模块",
+        "collapsible": true,
+        "children": [
+          "/posts/nodejs/Node.js-文件系统模块.md"
+        ]
+      },
+      {
+        "text": "Node.js 模块化设计",
+        "collapsible": true,
+        "children": [
+          "/posts/nodejs/Node.js-模块化设计.md"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "后端开发",
+    "collapsible": true,
+    "children": [
+      {
+        "text": "Express 基本使用",
+        "collapsible": true,
+        "children": [
+          "/posts/express的使用.md"
+        ]
+      },
+      {
+        "text": "Node.js 学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/Node.js 学习笔记.md"
+        ]
+      },
+      {
+        "text": "SpringBoot 完整学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/SpringBoot 完整学习笔记.md"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "开发工具",
+    "collapsible": true,
+    "children": [
+      {
+        "text": "Windows + WSL + Docker 踩坑与通关指南",
+        "collapsible": true,
+        "children": [
+          "/posts/Windows + WSL + Docker 踩坑与通关指南.md"
+        ]
+      },
+      {
+        "text": "GitHub 新手完全指南",
+        "collapsible": true,
+        "children": [
+          "/posts/GitHub新手完全指南.md"
+        ]
+      },
+      {
+        "text": "个人博客搭建指南",
+        "collapsible": true,
+        "children": [
+          "/posts/个人博客搭建指南.md"
+        ]
+      }
+    ]
+  }
+]

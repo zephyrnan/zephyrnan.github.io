@@ -2,7 +2,7 @@
 title: Node.js + MongoDB 生产级最佳实践指南
 date: 2025-11-22
 categories:
-  - 后端开发
+  - Node.js 深入学习
 tags:
   - Node.js
   - MongoDB

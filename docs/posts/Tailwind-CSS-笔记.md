@@ -1,3 +1,13 @@
+---
+title: Tailwind CSS 完整笔记
+date: 2025-11-20
+categories:
+  - 前端开发
+tags:
+  - CSS
+  - Tailwind
+---
+
 # Tailwind CSS 完整笔记
 
 ## 目录

@@ -2,7 +2,7 @@
 title: MongoDB 常用命令速查表
 date: 2025-11-22
 categories:
-  - 后端开发
+  - Node.js 深入学习
 tags:
   - MongoDB
   - 数据库

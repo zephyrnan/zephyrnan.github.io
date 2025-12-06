@@ -195,6 +195,23 @@ title: 作品集
   </div>
 </div>
 
+<div class="portfolio-item">
+  <div class="portfolio-media">
+    <img src="/portfolio/room.png" alt="智能灯杆系统截图" />
+  </div>
+  <div class="portfolio-content">
+    <h3 class="portfolio-title">智能灯杆系统</h3>
+    <p class="portfolio-desc">基于 Vue 3 + Node.js + MongoDB 的智能灯杆监控系统，提供实时监控、历史数据分析、报警管理和人员检测等功能。</p>
+    <div class="portfolio-tags">
+      <span class="portfolio-tag"> Vue 3</span>
+      <span class="portfolio-tag">Node.js </span>
+    </div>
+    <div class="portfolio-links">
+      <a href="https://github.com/zephyrnan/Intelligent-lamp-post-monitoring-system" target="_blank" class="portfolio-link secondary">源代码</a>
+    </div>
+  </div>
+</div>
+
 </div>
 
 ---

@@ -2,6 +2,17 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { searchPlugin } from '@vuepress/plugin-search'
+import fs from 'fs'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+
+// 动态加载侧边栏配置（由 npm run gen 生成）
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const sidebarPath = join(__dirname, 'sidebar.json')
+let postsSidebar = []
+if (fs.existsSync(sidebarPath)) {
+  postsSidebar = JSON.parse(fs.readFileSync(sidebarPath, 'utf-8'))
+}
 
 export default defineUserConfig({
   lang: 'zh-CN',
@@ -63,6 +74,10 @@ export default defineUserConfig({
         link: '/posts/',
       },
       {
+        text: '作品集',
+        link: '/portfolio.md',
+      },
+      {
         text: '留言板',
         link: '/guestbook.md',
       },
@@ -80,51 +95,9 @@ export default defineUserConfig({
       },
     ],
 
-    // 侧边栏配置
+    // 侧边栏配置（自动生成）
     sidebar: {
-      '/posts/': [
-        {
-          text: '前端开发',
-          children: [
-            '/posts/JavaScript 学习笔记.md',
-            '/posts/TypeScript 快速上手.md',
-            '/posts/Vue3 学习笔记.md',
-            '/posts/HTML5 与 CSS 综合学习笔记.md',
-            '/posts/CSS 属性速查手册.md',
-            '/posts/Tailwind-CSS-笔记.md',
-            '/posts/AJAX 学习笔记.md',
-            '/posts/Promise 学习笔记.md',
-            '/posts/Axios完整学习笔记.md',
-            '/posts/Node.js 学习笔记.md',
-          ],
-        },
-        {
-          text: 'Node.js 深入学习',
-          collapsible: true,
-          children: [
-            '/posts/nodejs/Node.js-文件系统模块.md',
-            '/posts/nodejs/Node.js-模块化设计.md',
-            '/posts/nodejs/Node.js-NPM包管理.md',
-            '/posts/nodejs/Node.js-HTTP模块.md',
-            '/posts/nodejs/Node.js-Express框架.md',
-            '/posts/nodejs/Node.js-MongoDB数据库.md',
-            '/posts/nodejs/MongoDB数据库基础使用.md',
-          ],
-        },
-        {
-          text: '后端开发',
-          children: [
-            '/posts/SpringBoot 完整学习笔记.md',
-          ],
-        },
-        {
-          text: '开发工具',
-          children: [
-            '/posts/GitHub新手完全指南.md',
-            '/posts/个人博客搭建指南.md',
-          ],
-        },
-      ],
+      '/posts/': postsSidebar,
       // 留言板页面不显示侧边栏
       '/guestbook.html': [],
     },
