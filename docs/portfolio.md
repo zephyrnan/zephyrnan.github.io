@@ -205,6 +205,7 @@ title: 作品集
     <div class="portfolio-tags">
       <span class="portfolio-tag"> Vue 3</span>
       <span class="portfolio-tag">Node.js </span>
+      <span class="portfolio-tag">MongoDB</span>
     </div>
     <div class="portfolio-links">
       <a href="https://github.com/zephyrnan/Intelligent-lamp-post-monitoring-system" target="_blank" class="portfolio-link secondary">源代码</a>
