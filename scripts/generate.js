@@ -37,6 +37,7 @@ const ICON_MAP = {
   'Express': '🚂',
   'MongoDB': '🍃',
   'Spring': '🍃',
+  'jQuery': '💲',
   'Git': '🐙',
   'GitHub': '🐙',
   '博客': '📝',

@@ -102,6 +102,22 @@
 ## 🎯 前端开发
 
 <div class="post-nav">
+  <a href="/posts/jQuery 学习笔记.html" class="post-card">
+    <div class="card-icon">💲</div>
+    <div class="card-content">
+      <div class="card-title">jQuery 学习笔记</div>
+      <div class="card-desc">jQuery 学习笔记 学习笔记与实践总结</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+  <a href="/posts/React 学习笔记.html" class="post-card">
+    <div class="card-icon">⚛️</div>
+    <div class="card-content">
+      <div class="card-title">React 学习笔记</div>
+      <div class="card-desc">React 学习笔记 学习笔记与实践总结</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
   <a href="/posts/AJAX 学习笔记.html" class="post-card">
     <div class="card-icon">🌐</div>
     <div class="card-content">

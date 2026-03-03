@@ -4,6 +4,20 @@
     "collapsible": true,
     "children": [
       {
+        "text": "jQuery 学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/jQuery 学习笔记.md"
+        ]
+      },
+      {
+        "text": "React 学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/React 学习笔记.md"
+        ]
+      },
+      {
         "text": "AJAX 学习笔记",
         "collapsible": true,
         "children": [
