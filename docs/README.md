@@ -73,11 +73,11 @@ footer: MIT Licensed | Copyright © 2025 Zephyrnan
 
 ## 📝 最新文章
 
+- [React 学习笔记](/posts/React%20学习笔记.html)
+- [jQuery 学习笔记](/posts/jQuery%20学习笔记.html)
 - [Node.js + MongoDB 生产级最佳实践指南](/posts/nodejs/Node.js-MongoDB数据库.html)
 - [MongoDB 常用命令速查表](/posts/nodejs/MongoDB数据库基础使用.html)
 - [个人博客搭建指南 - VuePress 2.0 完整教程](/posts/个人博客搭建指南.html)
-- [Vue3 学习笔记 - Composition API](/posts/Vue3%20学习笔记.html)
-- [TypeScript 快速上手指南](/posts/TypeScript%20快速上手.html)
 
 ---
 
