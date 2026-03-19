@@ -197,6 +197,11 @@ const element = <h1>Hello, React!</h1>;
 
 ```jsx
 function App() {
+    // 定义事件处理函数
+    const handleClick = () => {
+        console.log('被点击了');
+    };
+
     return (
         // 1. 必须有一个根元素（可以用 <></> 空标签包裹）
         <div>
@@ -279,7 +284,11 @@ function App() {
     const name = '张三';
     const age = 18;
     const isLogin = true;
-    const list = ['React', 'Vue', 'Angular'];
+    const list = [
+        { id: 1, name: 'React' },
+        { id: 2, name: 'Vue' },
+        { id: 3, name: 'Angular' },
+    ];
 
     return (
         <div>
@@ -295,10 +304,10 @@ function App() {
             {/* 调用函数 */}
             <p>{name.toUpperCase()}</p>
 
-            {/* 渲染列表 */}
+            {/* 渲染列表（key 应使用稳定唯一值，如 id） */}
             <ul>
-                {list.map((item, index) => (
-                    <li key={index}>{item}</li>
+                {list.map(item => (
+                    <li key={item.id}>{item.name}</li>
                 ))}
             </ul>
         </div>
@@ -414,16 +423,20 @@ function App() {
 React 中推荐使用**函数组件**（Function Component）来定义组件
 
 ```jsx
-// 基本函数组件
+// 写法一：函数声明
 function Welcome() {
     return <h1>Hello, React!</h1>;
 }
+```
 
-// 箭头函数写法
+```jsx
+// 写法二：箭头函数（与上面等价，选一种即可）
 const Welcome = () => {
     return <h1>Hello, React!</h1>;
 };
+```
 
+```jsx
 // 使用组件
 function App() {
     return (
@@ -585,35 +598,89 @@ function Counter() {
 
 **useState 的使用规则**
 
-```jsx
-function App() {
-    // ✅ 基本类型状态
-    const [name, setName] = useState('张三');
-    const [age, setAge] = useState(18);
-    const [isShow, setIsShow] = useState(true);
+**对象类型状态**（更新时必须创建新对象）
 
-    // ✅ 对象类型状态（更新时必须创建新对象）
+```jsx
+import { useState } from 'react';
+
+function UserProfile() {
     const [user, setUser] = useState({ name: '张三', age: 18 });
+
     const updateName = () => {
-        setUser({ ...user, name: '李四' });  // 展开运算符创建新对象
+        // ✅ 展开运算符创建新对象
+        setUser({ ...user, name: '李四' });
+        // ❌ 错误：直接修改原对象不会触发重新渲染
+        // user.name = '李四';
     };
 
-    // ✅ 数组类型状态（更新时必须创建新数组）
+    return (
+        <div>
+            <p>{user.name}，{user.age}岁</p>
+            <button onClick={updateName}>改名</button>
+        </div>
+    );
+}
+```
+
+**数组类型状态**（更新时必须创建新数组）
+
+```jsx
+import { useState } from 'react';
+
+function TodoList() {
     const [list, setList] = useState([1, 2, 3]);
+
     const addItem = () => {
-        setList([...list, 4]);  // 展开运算符创建新数组
+        setList([...list, list.length + 1]);  // 展开运算符创建新数组
     };
     const removeItem = (index) => {
-        setList(list.filter((_, i) => i !== index));
+        setList(list.filter((_, i) => i !== index));  // filter 返回新数组
     };
 
-    // ✅ 函数式更新（基于前一次状态计算新状态）
+    return (
+        <div>
+            <button onClick={addItem}>添加</button>
+            <ul>
+                {list.map((item, i) => (
+                    <li key={item}>
+                        {item} <button onClick={() => removeItem(i)}>删除</button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+```
+
+**函数式更新**（基于前一次状态计算新状态）
+
+```jsx
+import { useState } from 'react';
+
+function Counter() {
     const [count, setCount] = useState(0);
+
     const increment = () => {
-        setCount(prev => prev + 1);  // 推荐：基于前一次的值
+        // ✅ 推荐：基于前一次的值更新
+        setCount(prev => prev + 1);
     };
 
-    return <div>...</div>;
+    // ❌ 问题演示：连续调用 setCount(count + 1) 多次只会 +1
+    // 因为同一次渲染中 count 的值不变
+    const addThree = () => {
+        setCount(prev => prev + 1);
+        setCount(prev => prev + 1);
+        setCount(prev => prev + 1);
+        // 使用函数式更新，结果正确 +3
+    };
+
+    return (
+        <div>
+            <p>计数：{count}</p>
+            <button onClick={increment}>+1</button>
+            <button onClick={addThree}>+3</button>
+        </div>
+    );
 }
 ```
 
@@ -825,6 +892,20 @@ function App() {
 ```
 
 > 💡 **使用场景**：封装通用的表单组件、输入框组件、弹窗组件等，需要让外部控制内部 DOM 时使用。
+
+> ⚠️ **React 19 变化**：从 **React 19** 开始，`ref` 可以直接作为普通 prop 传递给函数组件，**不再需要 `forwardRef`**。上面的写法在 React 18 及之前版本中使用，React 19 中可以简化为：
+>
+> ```jsx
+> // React 19：ref 直接作为 prop 接收，无需 forwardRef
+> function CustomInput({ label, ref }) {
+>     return (
+>         <div>
+>             <label>{label}</label>
+>             <input ref={ref} />
+>         </div>
+>     );
+> }
+> ```
 
 ### 4. useMemo 和 useCallback — 性能优化
 
@@ -1060,6 +1141,8 @@ function App() {
 在了解各种通信方式之前，先理解一个常见的痛点：**Props Drilling**（属性穿透）
 
 ```jsx
+import { useState } from 'react';
+
 // ❌ Props Drilling：数据需要经过中间组件层层传递
 function App() {
     const [user, setUser] = useState({ name: '张三' });
@@ -1089,6 +1172,8 @@ function UserInfo({ user }) {
 ### 2. 父传子 — Props
 
 ```jsx
+import { useState } from 'react';
+
 // 父组件
 function Parent() {
     const [message, setMessage] = useState('Hello');
@@ -1105,6 +1190,8 @@ function Child({ msg }) {
 ### 3. 子传父 — 回调函数
 
 ```jsx
+import { useState } from 'react';
+
 // 父组件
 function Parent() {
     const [childData, setChildData] = useState('');
@@ -1135,6 +1222,8 @@ function Child({ onSend }) {
 ### 4. 兄弟组件通信 — 状态提升
 
 ```jsx
+import { useState } from 'react';
+
 // 父组件：管理共享状态
 function Parent() {
     const [count, setCount] = useState(0);
@@ -1663,6 +1752,8 @@ function Button({ variant = 'primary', children }) {
 **受控组件**：表单元素的值由 React 状态控制
 
 ```jsx
+import { useState } from 'react';
+
 function ControlledForm() {
     const [formData, setFormData] = useState({
         username: '',
@@ -1719,6 +1810,8 @@ function ControlledForm() {
 **非受控组件**：使用 `ref` 直接获取 DOM 元素的值
 
 ```jsx
+import { useRef } from 'react';
+
 function UncontrolledForm() {
     const usernameRef = useRef(null);
 
@@ -1916,6 +2009,9 @@ function App() {
 ```jsx
 import { useState, useTransition } from 'react';
 
+// 模拟一个大数组（实际项目中可能来自 API 或状态管理）
+const hugeList = Array.from({ length: 10000 }, (_, i) => `项目 ${i + 1}`);
+
 function SearchPage() {
     const [query, setQuery] = useState('');
     const [list, setList] = useState([]);
@@ -1959,6 +2055,9 @@ function SearchPage() {
 
 ```jsx
 import { useState, useDeferredValue, useMemo } from 'react';
+
+// 模拟一个大数组
+const hugeList = Array.from({ length: 10000 }, (_, i) => `项目 ${i + 1}`);
 
 function SearchResults({ query }) {
     // query 频繁变化时，deferredQuery 会延迟更新
@@ -2037,6 +2136,3 @@ function LikeButton() {
 ```
 
 > 💡 **了解即可**：RSC 目前主要通过 **Next.js** 等框架使用（Next.js App Router 已深度集成 RSC）。作为初学者，先掌握本笔记中的客户端 React 基础，后续再学习 RSC 和全栈框架。
-
-
-
