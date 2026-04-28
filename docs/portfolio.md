@@ -213,6 +213,26 @@ title: 作品集
   </div>
 </div>
 
+<!-- 灵境ai -->
+<div class="portfolio-item">
+  <div class="portfolio-media">
+    <img src="/portfolio/lingjing-ai.svg" alt="灵境ai 项目截图" />
+  </div>
+  <div class="portfolio-content">
+    <h3 class="portfolio-title">灵境ai</h3>
+    <p class="portfolio-desc">一款聚焦代码、分析和创作的 AI 对话应用，提供清爽的暗色工作台、快捷提示入口和统一输入区。适合进行项目计划拆解、错误原因分析、经历总结和产品需求整理。</p>
+    <div class="portfolio-tags">
+      <span class="portfolio-tag">AI Chatbot</span>
+      <span class="portfolio-tag">Web App</span>
+      <span class="portfolio-tag">Vercel</span>
+      <span class="portfolio-tag">效率工具</span>
+    </div>
+    <div class="portfolio-links">
+      <a href="https://my-ai-chatbot-aces-projects-16b0362d.vercel.app/" target="_blank" class="portfolio-link">在线预览</a>
+    </div>
+  </div>
+</div>
+
 </div>
 
 ---
