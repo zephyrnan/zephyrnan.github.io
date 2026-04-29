@@ -9,9 +9,12 @@ title: 作品集
 <style>
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
   margin: 30px 0;
+  width: min(1180px, calc(100vw - 48px));
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .portfolio-item {
@@ -65,6 +68,10 @@ title: 作品集
   font-size: 14px;
   color: #666;
   line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .portfolio-tags {
@@ -150,9 +157,19 @@ title: 作品集
   opacity: 0;
 }
 
+@media (max-width: 1080px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+}
+
 @media (max-width: 768px) {
   .portfolio-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .portfolio-media {
