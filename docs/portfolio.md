@@ -190,6 +190,29 @@ title: 作品集
 
 <div class="portfolio-grid">
 
+<!-- 面向空间数据的语言驱动手术台 -->
+<div class="portfolio-item">
+  <div class="portfolio-media">
+    <img src="/portfolio/webgis.png" alt="面向空间数据的语言驱动手术台截图" />
+  </div>
+  <div class="portfolio-content">
+    <h3 class="portfolio-title">面向空间数据的语言驱动手术台</h3>
+    <p class="portfolio-desc">面向 GIS 空间数据处理的 Web 工具，支持上传 Shapefile、GeoJSON、JSON、ZIP 等文件，通过自然语言生成操作 AST，并执行图层提取、几何抽稀、坐标纠偏和空字段清洗等任务。</p>
+    <div class="portfolio-tags">
+      <span class="portfolio-tag">React</span>
+      <span class="portfolio-tag">TypeScript</span>
+      <span class="portfolio-tag">WebGIS</span>
+      <span class="portfolio-tag">WASM</span>
+      <span class="portfolio-tag">Web Worker</span>
+      <span class="portfolio-tag">Canvas</span>
+    </div>
+    <div class="portfolio-links">
+      <a href="https://web-gis-gold.vercel.app/" target="_blank" class="portfolio-link">在线预览</a>
+      <a href="https://github.com/zephyrnan/webGis" target="_blank" class="portfolio-link secondary">源代码</a>
+    </div>
+  </div>
+</div>
+
 <!-- Web 协同画板 -->
 <div class="portfolio-item">
   <div class="portfolio-media">
