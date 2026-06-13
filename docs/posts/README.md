@@ -102,6 +102,22 @@
 ## 🎯 前端开发
 
 <div class="post-nav">
+  <a href="/posts/React Server Components（RSC）学习笔记.html" class="post-card">
+    <div class="card-icon">⚛️</div>
+    <div class="card-content">
+      <div class="card-title">React Server Components（RSC）学习笔记</div>
+      <div class="card-desc">React Server Components（RSC）学习笔记 学习笔记与实践总结</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+  <a href="/posts/全栈框架学习笔记.html" class="post-card">
+    <div class="card-icon">📄</div>
+    <div class="card-content">
+      <div class="card-title">全栈框架学习笔记</div>
+      <div class="card-desc">全栈框架学习笔记 学习笔记与实践总结</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
   <a href="/posts/jQuery 学习笔记.html" class="post-card">
     <div class="card-icon">💲</div>
     <div class="card-content">
@@ -114,7 +130,7 @@
     <div class="card-icon">⚛️</div>
     <div class="card-content">
       <div class="card-title">React 学习笔记</div>
-      <div class="card-desc">React 学习笔记 学习笔记与实践总结</div>
+      <div class="card-desc">React 官方文档(https://react.dev/)</div>
     </div>
     <div class="card-arrow">→</div>
   </a>

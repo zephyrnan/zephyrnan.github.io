@@ -4,6 +4,20 @@
     "collapsible": true,
     "children": [
       {
+        "text": "React Server Components（RSC）学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/React Server Components（RSC）学习笔记.md"
+        ]
+      },
+      {
+        "text": "全栈框架学习笔记",
+        "collapsible": true,
+        "children": [
+          "/posts/全栈框架学习笔记.md"
+        ]
+      },
+      {
         "text": "jQuery 学习笔记",
         "collapsible": true,
         "children": [
