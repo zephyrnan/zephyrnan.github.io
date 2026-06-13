@@ -9,7 +9,8 @@
     "docs:build": "vuepress build docs",
     "clean": "rm -rf docs/.vuepress/.cache docs/.vuepress/.temp docs/.vuepress/dist",
     "gen": "node scripts/generate.js",
-    "deploy": "bash deploy.sh"
+    "deploy": "bash deploy.sh",
+    "publish": "bash publish.sh"
   },
   "keywords": [
     "blog",
