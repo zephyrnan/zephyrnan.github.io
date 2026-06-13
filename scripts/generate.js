@@ -15,9 +15,15 @@ const README_OUTPUT = path.join(POSTS_PATH, 'README.md')
 // 分类配置 - 定义分类顺序和图标
 const CATEGORY_CONFIG = {
   '前端开发': { order: 1, icon: '🎯', emoji: '📘' },
-  'Node.js 深入学习': { order: 2, icon: '📗', emoji: '🟢' },
-  '后端开发': { order: 3, icon: '🚀', emoji: '🍃' },
-  '开发工具': { order: 4, icon: '🛠️', emoji: '🔧' },
+  '元框架与全栈路由': { order: 2, icon: '⚡️', emoji: '⚛️' },
+  '现代数据流与安全': { order: 3, icon: '🗄️', emoji: '🔐' },
+  '商业化与支付闭环': { order: 4, icon: '💰', emoji: '💳' },
+  '零运维与边缘计算': { order: 5, icon: '🚀', emoji: '☁️' },
+  'AI 赋能与集成': { order: 6, icon: '🤖', emoji: '✨' },
+  '增长、监控与运营': { order: 7, icon: '📈', emoji: '📊' },
+  'Node.js 深入学习': { order: 8, icon: '📗', emoji: '🟢' },
+  '后端开发': { order: 9, icon: '🚀', emoji: '🍃' },
+  '开发工具': { order: 10, icon: '🛠️', emoji: '🔧' },
   '其他': { order: 99, icon: '📂', emoji: '📄' }
 }
 
