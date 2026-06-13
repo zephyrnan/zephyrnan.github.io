@@ -206,7 +206,7 @@ console.log(str.charAt(0));           // 'h'
 console.log(str.indexOf('l'));        // 2
 console.log(str.slice(1, 3));         // 'el'
 console.log(str.substring(1, 3));     // 'el'
-console.log(str.substr(1, 3));        // 'ell'
+console.log(str.substr(1, 3));        // 'ell'（substr 已被废弃，建议改用 slice）
 console.log(str.toUpperCase());       // 'HELLO'
 console.log(str.toLowerCase());       // 'hello'
 console.log(str.split(''));           // ['h','e','l','l','o']
@@ -1011,7 +1011,7 @@ let sayHi = function(name) {
 let add = (a, b) => a + b;
 
 // 等价于
-let add = function(a, b) {
+let add2 = function(a, b) {
     return a + b;
 };
 ```
@@ -1896,9 +1896,8 @@ let str2 = `我叫${name}，今年${age}岁`;
 // 多行字符串
 let html = `
     <div>
-  
         <p>内容</p>
-    </div>g
+    </div>
 `;
 
 // 表达式
@@ -1953,7 +1952,6 @@ console.log('  hello  '.trimEnd());    // "  hello"
 **对象解构**
 
 ```js
-
 let person = { name: '张三', age: 18, gender: '男' };
 
 // 基本解构
@@ -1964,18 +1962,19 @@ console.log(name, age);  // "张三" 18
 let { name: personName, age: personAge } = person;
 console.log(personName);  // "张三"
 
-// 默认值
-let { name, height = 180 } = person;
+// 默认值（解构出对象中不存在的 height，使用默认值 180）
+let { height = 180 } = person;
 console.log(height);  // 180
 
-// 嵌套解构
+// 嵌套解构（注意：这里的变量名要和上面的区分开，避免重复声明报错）
 let obj = {
     user: {
         name: '李四',
         info: { age: 20 }
     }
 };
-let { user: { name, info: { age } } } = obj;
+let { user: { name: userName, info: { age: userAge } } } = obj;
+console.log(userName, userAge);  // "李四" 20
 ```
 
 ### 3. 箭头函数
@@ -2955,8 +2954,8 @@ function trim(str) {
 // 通过 id 获取
 let elem = document.getElementById('myId');
 
-//通过类属性获取
-let elem=doucument.querySelector('input[value]')
+// 通过属性选择器获取（获取带 value 属性的 input）
+let input = document.querySelector('input[value]');
 
 // 通过标签名获取
 let elems = document.getElementsByTagName('div');

@@ -1416,6 +1416,16 @@ body {
 }
 ```
 
+> 💡 **什么是 BFC（常见面试题）**：
+> BFC（Block Formatting Context，块级格式化上下文）是一块独立的渲染区域，
+> 内部元素的布局不会影响外部。它能解决三个经典问题：
+> 1. **阻止外边距折叠**：两个 BFC 之间的 margin 不会合并
+> 2. **清除浮动**：父元素形成 BFC 后会包裹住内部的浮动子元素，避免高度塌陷
+> 3. **阻止文字环绕**：BFC 区域不会与浮动元素重叠
+>
+> **触发 BFC 的常用方式**：`overflow: hidden`（或 auto）、`display: flow-root`
+> （最干净，无副作用）、`display: flex/grid`、`position: absolute/fixed`、浮动元素。
+
 ### 4. 边框样式
 
 ```css
@@ -1714,27 +1724,31 @@ body {
 
 /* 清除浮动的方法 */
 
-/* 1. 额外标签法 */
-<div class="float-left"></div>
-<div style="clear: both;"></div>
+/* 1. 额外标签法：在浮动元素后加一个空标签
+   <div class="float-left"></div>
+   <div style="clear: both;"></div> */
 
-/* 2. 父元素添加 overflow */
+/* 2. 父元素添加 overflow（触发 BFC）*/
 .parent {
     overflow: hidden;
 }
 
-/* 3. 父元素添加伪元素（推荐）*/
+/* 3. 父元素添加伪元素（最常用，推荐）*/
 .clearfix::after {
     content: "";
     display: block;
     clear: both;
 }
 
-/* 4. 使用 display: flow-root（推荐）*/
+/* 4. 使用 display: flow-root（现代写法，推荐）*/
 .parent {
     display: flow-root;
 }
 ```
+
+> 💡 **为什么需要清除浮动**：当子元素全部浮动时，父元素会失去高度（高度塌陷），
+> 导致背景、边框无法包裹内容。现代布局已很少用 float 做整体布局，
+> 优先使用 Flexbox 或 Grid，float 现在主要用于文字环绕图片。
 
 ## 十、CSS Flexbox 布局
 
@@ -2705,21 +2719,11 @@ html {
     /* 如果 --text-color 未定义，使用 #333 */
 }
 
-/* 局部变量 */
+/* 局部变量（只在该元素及其后代生效）*/
 .dark-theme {
     --primary-color: #2c3e50;
     --bg-color: #000;
 }
-
-/* JavaScript 操作变量 */
-<script>
-    // 获取变量
-    const root = document.documentElement;
-    const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color');
-
-    // 设置变量
-    root.style.setProperty('--primary-color', '#e74c3c');
-</script>
 
 /* 深色模式示例 */
 :root {
@@ -2738,6 +2742,22 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
 }
+```
+
+> 💡 **CSS 变量 vs Sass/Less 变量**：CSS 变量是运行时生效的，可以用
+> JavaScript 动态修改、能响应媒体查询，还能被继承；而 Sass 变量在编译时
+> 就被替换成固定值，运行时无法改变。这也是实现主题切换的常用方案。
+
+```js
+// JavaScript 读取和修改 CSS 变量
+const root = document.documentElement;
+
+// 获取变量值
+const primaryColor = getComputedStyle(root)
+    .getPropertyValue('--primary-color');
+
+// 设置变量值（例如点击按钮切换主题色）
+root.style.setProperty('--primary-color', '#e74c3c');
 ```
 
 ### 2. CSS 函数
@@ -2959,8 +2979,11 @@ html {
 .card--primary { }
 .card--large { }
 .card__header--highlighted { }
+```
 
-/* 示例 */
+对应的 HTML 结构：
+
+```html
 <div class="card card--primary">
     <div class="card__header card__header--highlighted">标题</div>
     <div class="card__body">内容</div>
@@ -2993,12 +3016,9 @@ html {
     will-change: transform, opacity;
 }
 
-/* 5. 避免使用 @import */
-/* 不推荐 */
-@import url('style.css');
-
-/* 推荐 */
-<link rel="stylesheet" href="style.css">
+/* 5. 避免使用 @import 引入样式表（会串行加载，阻塞渲染）*/
+/* 不推荐：@import url('style.css'); */
+/* 推荐：在 HTML 中用 <link rel="stylesheet" href="style.css"> 并行加载 */
 ```
 
 ### 3. 代码组织

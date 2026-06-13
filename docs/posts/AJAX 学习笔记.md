@@ -280,10 +280,7 @@ const xhr = new XMLHttpRequest();
 // 2. 初始化请求
 xhr.open('GET', '/api/users', true);
 
-// 3. 发送请求
-xhr.send();
-
-// 4. 处理响应
+// 3. 处理响应（注意：应在 send() 之前注册回调，避免漏掉状态变化）
 xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -293,6 +290,9 @@ xhr.onreadystatechange = function() {
         }
     }
 };
+
+// 4. 发送请求
+xhr.send();
 ```
 
 > ⚠️ **注意事项**:
@@ -1419,7 +1419,8 @@ class Ajax {
 
             // ... 其他代码
 
-            xhr.onload = function() {
+            // 用箭头函数保证 this 仍指向 Ajax 实例（普通函数中 this 会指向 xhr）
+            xhr.onload = () => {
                 let response = {
                     data: xhr.responseText,
                     status: xhr.status,

@@ -21,7 +21,7 @@ tags:
 - [三、SpringBoot 核心特性](#三springboot-核心特性)
 - [四、Web 开发](#四web-开发)
 - [五、数据访问](#五数据访问)
-- [六��Navicat Premium 16 使用指南](#六navicat-premium-16-使用指南)
+- [六、Navicat Premium 16 使用指南](#六navicat-premium-16-使用指南)
 - [七、整合第三方技术](#七整合第三方技术)
 - [八、实战项目](#八实战项目)
 - [九、部署与运维](#九部署与运维)
@@ -930,6 +930,23 @@ public class DependencyInjectionDemo {
     private UserService specificService;
 }
 ```
+
+> 💡 **常见面试问法：依赖注入用字段注入还是构造器注入？**
+> - **字段注入（`@Autowired` 直接写在字段上）**：写法最简洁，但官方不推荐。原因：1) 无法用 `final` 修饰，对象可变；2) 脱离 Spring 容器无法 new 出可用对象，单元测试不方便；3) 容易掩盖循环依赖问题。
+> - **构造器注入（推荐）**：字段可声明为 `final`，保证依赖不可变且不为 null；便于写单元测试。Spring 4.3+ 当类只有一个构造器时，可以省略构造器上的 `@Autowired`。
+> - 配合 Lombok 的 `@RequiredArgsConstructor`，可以为所有 `final` 字段自动生成构造器，写法和字段注入一样简洁：
+>
+> ```java
+> @Service
+> @RequiredArgsConstructor  // 自动为 final 字段生成构造器,完成注入
+> public class UserService {
+>     private final UserRepository userRepository;  // 构造器注入,推荐
+> }
+> ```
+>
+> ⚠️ **新手易踩坑：`@Transactional` 自调用失效**
+> - `@Transactional`、`@Async`、`@Cacheable` 都依赖 Spring AOP 代理生效。**同一个类内部方法 A 直接调用本类的事务方法 B，事务不会生效**（因为没有经过代理对象）。
+> - 解决：把方法 B 拆到另一个 Bean 中调用，或注入自身代理。另外 `@Transactional` 默认只对 `RuntimeException` 回滚，受检异常需配置 `rollbackFor = Exception.class`。
 
 ### 3.3 自动配置原理
 

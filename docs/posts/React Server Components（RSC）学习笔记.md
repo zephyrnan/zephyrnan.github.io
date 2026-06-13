@@ -340,20 +340,17 @@ export default function UserCard({ user }) {
 
 可以传：
 
-- string
-- number
-- boolean
-- null
-- 普通对象
-- 数组
+- string、number、boolean、null、undefined
+- 普通对象、数组
+- Date、Map、Set、BigInt、Promise（React 的 RSC 序列化支持这些）
+- 用 `'use server'` 标记的服务端函数（Server Actions）
 
-不适合直接传：
+不能传：
 
-- 函数
-- class 实例
-- Date 对象需要注意转换
-- Map、Set 等复杂结构
-- 数据库连接对象
+- 普通函数（未标记 `'use server'` 的函数无法序列化）
+- class 实例（带方法/原型的对象）
+- 数据库连接、文件句柄等服务端专属对象
+- Symbol
 
 错误理解：
 

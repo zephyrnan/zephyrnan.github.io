@@ -74,30 +74,30 @@ git config --list
 >   - 本地: `.git/config`
 >
 > ```bash
-> // 常见错误:邮箱设置错误
+> # 常见错误:邮箱设置错误
 > git config --global user.email "email@example"  # ❌ 无效邮箱格式
 > git config --global user.email "email@example.com"  # ✅ 正确
 >
-> // 为单个项目设置不同的用户信息
+> # 为单个项目设置不同的用户信息
 > cd my-work-project
 > git config --local user.email "work@company.com"  # 工作邮箱
 >
 > cd ../my-personal-project
 > git config --local user.email "personal@gmail.com"  # 个人邮箱
 >
-> // 查看生效的配置
+> # 查看生效的配置
 > git config --list --show-origin  # 显示每个配置的来源
 > ```
 
 > 🎯 **实际应用场景**:
 > ```bash
-> // 场景1:初次安装Git后的全局配置
+> # 场景1:初次安装Git后的全局配置
 > git config --global user.name "Zhang San"
 > git config --global user.email "zhangsan@example.com"
 > git config --global core.editor "code --wait"  # 设置默认编辑器为VSCode
 > git config --global init.defaultBranch main  # 设置默认分支名为main
 >
-> // 场景2:工作电脑配置多个Git账户
+> # 场景2:工作电脑配置多个Git账户
 > # 全局使用工作账户
 > git config --global user.name "Work Name"
 > git config --global user.email "work@company.com"
@@ -107,17 +107,17 @@ git config --list
 > git config --local user.name "Personal Name"
 > git config --local user.email "personal@gmail.com"
 >
-> // 场景3:配置Git常用别名
+> # 场景3:配置Git常用别名
 > git config --global alias.st status  # git st = git status
 > git config --global alias.co checkout  # git co = git checkout
 > git config --global alias.br branch  # git br = git branch
 > git config --global alias.cm "commit -m"  # git cm "msg"
 > git config --global alias.last "log -1 HEAD"  # 查看最后一次提交
 >
-> // 场景4:配置中文文件名显示
+> # 场景4:配置中文文件名显示
 > git config --global core.quotepath false  # 显示中文文件名而不是转义字符
 >
-> // 场景5:配置Windows/Linux换行符处理
+> # 场景5:配置Windows/Linux换行符处理
 > # Windows用户
 > git config --global core.autocrlf true
 > # Linux/macOS用户
@@ -131,24 +131,28 @@ git config --list
 
 **生成 SSH 密钥**
 ```bash
-# 生成密钥（邮箱替换为你的 GitHub 邮箱）
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# 生成密钥（推荐 ed25519 算法，更短更安全；邮箱替换为你的 GitHub 邮箱）
+ssh-keygen -t ed25519 -C "your_email@example.com"
 
 # 一路按回车，使用默认设置
-# 密钥保存在 ~/.ssh/id_rsa.pub（公钥）和 ~/.ssh/id_rsa（私钥）
+# 密钥保存在 ~/.ssh/id_ed25519.pub（公钥）和 ~/.ssh/id_ed25519（私钥）
+# 注意：公钥(.pub)可以分享，私钥绝对不能泄露给任何人
+
+# 如果系统较老不支持 ed25519，再退回用 RSA：
+# ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
 **添加公钥到 GitHub**
 1. 复制公钥内容：
    ```bash
    # Windows (Git Bash)
-   cat ~/.ssh/id_rsa.pub | clip
+   cat ~/.ssh/id_ed25519.pub | clip
 
    # macOS
-   cat ~/.ssh/id_rsa.pub | pbcopy
+   cat ~/.ssh/id_ed25519.pub | pbcopy
 
    # Linux
-   cat ~/.ssh/id_rsa.pub
+   cat ~/.ssh/id_ed25519.pub
    ```
 
 2. 登录 GitHub → 点击头像 → Settings → SSH and GPG keys → New SSH key
@@ -675,22 +679,24 @@ git push origin --delete feature-user-profile
 ```bash
 # ❌ 错误做法：直接删除文件再提交（历史记录仍存在）
 
-# ✅ 正确做法：使用 git filter-branch 或 BFG Repo-Cleaner
+# ✅ 正确做法：从所有历史记录中彻底移除文件
 
-# 方法一：从历史记录中移除文件
-git filter-branch --force --index-filter \
-  "git rm --cached --ignore-unmatch .env" \
-  --prune-empty --tag-name-filter cat -- --all
+# 方法一（官方推荐）：git filter-repo（需先安装：pip install git-filter-repo）
+# git filter-branch 已被官方标记为不推荐，filter-repo 更快更安全
+git filter-repo --invert-paths --path .env
 
-# 强制推送（覆盖远程历史）
+# 重新关联远程并强制推送（filter-repo 会清掉 origin，需要重新添加）
+git remote add origin git@github.com:username/repo.git
 git push --force --all
 
-# 方法二：使用 BFG Repo-Cleaner（更快）
+# 方法二：使用 BFG Repo-Cleaner（更快，需要 Java 环境）
 # 下载 https://rtyley.github.io/bfg-repo-cleaner/
 java -jar bfg.jar --delete-files .env
 git reflog expire --expire=now --all && git gc --prune=now --aggressive
-git push --force
+git push --force --all
 ```
+
+> ⚠️ **重要**：只要密钥/密码被推送到过远程仓库，就应视为已泄露。清理历史后，务必去对应平台**重置（rotate）**这些密码、Token、API Key，否则别人可能已经从历史记录里拿到了它们。
 
 **预防措施**
 ```bash

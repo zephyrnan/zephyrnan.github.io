@@ -1,12 +1,14 @@
 ---
 title: Windows + WSL + Docker 踩坑与通关指南
-date: 2025-12-5
+date: 2025-12-05
 categories:
    - 开发工具
 tags:
    - WSL
    - Docker
 ---
+
+# Windows + WSL + Docker 踩坑与通关指南
 
 ## 🛑 核心误区回顾（最重要的坑）
 
@@ -30,7 +32,17 @@ tags:
 我们没有使用默认的 C 盘安装，而是把系统搬到了 F 盘。
 
 - **状态**：Ubuntu 运行在 `F:\WSL\Ubuntu`。
-- **注意**：搬家后需要修改 `/etc/wsl.conf` 找回默认用户 (`hhn`)，否则会一直是 root 权限。
+- **注意**：搬家（`wsl --export` 导出、`wsl --import` 到新位置）后，导入的实例会默认用 root 登录，需要修改 `/etc/wsl.conf` 找回默认用户 (`hhn`)，否则每次进终端都是 root 权限。
+
+`/etc/wsl.conf` 配置示例（用 `sudo nano /etc/wsl.conf` 编辑）：
+
+```ini
+[user]
+# 设置默认登录用户，替换成你自己的用户名
+default=hhn
+```
+
+改完后在 Windows 的 PowerShell 里执行 `wsl --shutdown`，再重新打开 Ubuntu 即可生效。
 
 ### 2. 软件安装顺序
 
@@ -86,19 +98,39 @@ tags:
 - **原因**：Docker Desktop 的 `General` 设置里，`Use the WSL 2 based engine` 总开关没开，或者软件没启动。
 - **解法**：确保 General 里的 WSL 2 勾选 -> Apply & Restart -> 菜单出现。
 
+### 坑位 4：WSL 版本是 1，Docker 用不了
+
+- **报错**：Docker Desktop 提示 `WSL 2 is not installed` 或集成开关点不动。
+- **原因**：发行版当前跑在 WSL 1 上，Docker Desktop 只支持 WSL 2。
+- **解法**：在 PowerShell 里检查并升级。
+
+```powershell
+# 查看每个发行版的 WSL 版本
+wsl -l -v
+
+# 把 Ubuntu 升级到 WSL 2
+wsl --set-version Ubuntu 2
+
+# （可选）把以后新装的发行版默认设为 WSL 2
+wsl --set-default-version 2
+```
+
+### 坑位 5：磁盘空间被 WSL 吃光 / 改了文件 Docker 没反应
+
+- **现象**：C 盘越来越满，或者 `localhost:8080` 打不开。
+- **排查**：
+  - C 盘满：WSL 的虚拟磁盘 `ext4.vhdx` 只增不减，可在 PowerShell 用 `wsl --shutdown` 后用 `diskpart` 的 `compact vdisk` 压缩。
+  - 端口打不开：先 `docker ps` 看容器是否在运行；注意要在 **WSL 终端**里访问项目文件（路径在 `/home/...` 下），不要把项目放在 `/mnt/c/...`，那样文件读写会非常慢。
+
 ------
 
 ## 📜 最终成功的配置代码
 
-### 1. Docker Engine 配置 (解决网络卡顿) 1. 码头工人
+### 1. Docker Engine 配置 (解决网络卡顿)
 
 位置：Docker Desktop -> Settings -> Docker Engine
 
-JSON
-
-
-
-```
+```json
 {
   "builder": {
     "gc": {
@@ -116,68 +148,79 @@ JSON
 }
 ```
 
+> 💡 提示：改完镜像源后，记得点右下角 `Apply & Restart` 重启 Docker，配置才会生效。
+
 ### 2. 标准前端 Dockerfile
 
 位置：项目根目录
 
-Dockerfile
-
-
-
-```
-# 使用 Nginx
+```dockerfile
+# 使用 Nginx 作为静态服务器（alpine 体积小）
 FROM nginx:alpine
 
-# 关键点：只复制打包后的 dist 目录
+# 关键点：只复制打包后的 dist 目录到 Nginx 默认网站目录
 COPY dist /usr/share/nginx/html
 
-# 暴露端口
+# 暴露 80 端口
 EXPOSE 80
+
+# 容器启动时以前台方式运行 Nginx（Docker 要求主进程不退出）
+CMD ["nginx", "-g", "daemon off;"]
 ```
+
+> 💡 提示：建议在项目根目录再建一个 `.dockerignore` 文件，写入 `node_modules` 和 `dist`，避免把多余文件打进镜像、拖慢构建。
 
 ### 3. 启动命令
 
-Bash
-
-
-
-```
-# 1. 先打包源码
+```bash
+# 1. 先打包源码，生成 dist 目录
 npm run build
 
-# 2. 构建镜像
+# 2. 构建镜像（-t 给镜像起名字，末尾的 . 表示用当前目录的 Dockerfile）
 docker build -t my-site-prod .
 
-# 3. 启动容器
+# 3. 启动容器（-d 后台运行，-p 把宿主机 8080 映射到容器 80 端口）
 docker run -d -p 8080:80 my-site-prod
+
+# 4. 查看正在运行的容器
+docker ps
+
+# 浏览器访问 http://localhost:8080 即可看到页面
 ```
 
 ------
 
 # 🔗 附录：常用资源与下载链接
 
-### 1. Docker Desktop (Windows) 1. 码头工人
+### 1. Docker Desktop (Windows)
 
 这是我们“找不到菜单”时缺少的那个核心软件。
 
 - **官方下载页**：https://www.docker.com/products/docker-desktop/
-- **直接下载链接 (Windows x64)**：[https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe](https://desktop.docker.com/win/main/amd64/Docker Desktop Installer.exe)
+- **直接下载链接 (Windows x64)**：[Docker Desktop Installer.exe](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
 
-### 2. Nvm (Node 版本管理)
+### 2. nvm (Node 版本管理)
 
-用于在 Linux (WSL) 里安装 Node.js。
+用于在 Linux (WSL) 里安装并切换 Node.js 版本。
 
-- **GitHub 原版** (国外)：[https://github.com/nvm-sh/nvmhttps://github.com vm-sh vm](https://github.com/nvm-sh/nvm)
-
-- Gitee 镜像版
-
-   
-
-  (国内推荐，解决网络卡顿)：
-
-  https://gitee.com/RubyMetric/nvm-cnhttps://gitee.com/RubyMetric vm-cn
-
+- **GitHub 原版**（国外）：[https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
+- **Gitee 镜像版**（国内推荐，解决网络卡顿）：[https://gitee.com/RubyMetric/nvm-cn](https://gitee.com/RubyMetric/nvm-cn)
   - *安装命令*：`bash -c "$(curl -fsSL https://gitee.com/RubyMetric/nvm-cn/raw/main/install.sh)"`
+  - *安装完成后常用命令*：
+
+```bash
+# 重新加载配置（或重开终端）
+source ~/.bashrc
+
+# 安装最新 LTS 版 Node
+nvm install --lts
+
+# 查看已安装版本
+nvm ls
+
+# 切换版本
+nvm use 20
+```
 
 ### 3. Docker 镜像加速地址 (国内)
 
@@ -189,21 +232,8 @@ docker run -d -p 8080:80 my-site-prod
 
 ### 4. VS Code 插件
 
-- WSL 插件 (Microsoft)
-
-  : 在 VS Code 扩展商店搜
-
-   
-
-  ```
-  WSL
-  ```
-
-  。
-
+- **WSL 插件 (Microsoft)**：在 VS Code 扩展商店搜索 `WSL` 安装。装好后，在 WSL 里进入项目目录执行 `code .`，即可用 Windows 的 VS Code 直接编辑 Linux 里的文件。
   - *链接*：https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
-
-  
 
 ### 5. 参考文档
 

@@ -338,7 +338,34 @@ console.log(math.default(2, 3));  // 输出: 6 (访问默认导出需要用.defa
 | 值拷贝 | 是（输出值的拷贝） | 否（输出值的引用） |
 | 动态导入 | 支持 | 需要 `import()` |
 | 文件扩展名 | `.js` | `.mjs` 或配置 `type: "module"` |
+| 顶层 `__dirname`/`__filename` | 有 | 没有（用 `import.meta.url` 代替） |
 | 使用场景 | Node.js 传统项目 | 现代项目、浏览器兼容 |
+
+> 💡 **常见面试问法：CommonJS 导出值拷贝 vs ESM 导出引用**
+> 这是最容易被追问的点。看下面的对比：
+>
+> ```javascript
+> // ---- CommonJS：导出的是值的拷贝 ----
+> // counter.js
+> let count = 0;
+> setTimeout(() => { count = 100; }, 1000);
+> module.exports = { count };  // 导出时把当前的 count 值(0)拷贝进去
+>
+> // main.js
+> const { count } = require('./counter');
+> setTimeout(() => console.log(count), 2000);  // 仍然是 0，外部感知不到变化
+>
+> // ---- ESM：导出的是只读的“活引用” ----
+> // counter.mjs
+> export let count = 0;
+> setTimeout(() => { count = 100; }, 1000);
+>
+> // main.mjs
+> import { count } from './counter.mjs';
+> setTimeout(() => console.log(count), 2000);  // 100，能感知到模块内部的变化
+> ```
+>
+> 一句话总结：CommonJS 是「运行时同步加载 + 值拷贝」，ESM 是「编译期静态分析 + 引用绑定」，后者因此支持 Tree Shaking。
 
 ## 3. 模块导出详解
 

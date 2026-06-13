@@ -154,7 +154,7 @@ vue create my-vue-app
 </html>
 ```
 
-// 效果: 页面显示 "Hello Vue3!" 的标题
+运行后，页面会显示 "Hello Vue3!" 的标题。
 
 > ⚠️ **注意事项**:
 > - CDN方式仅适用于学习和原型开发，生产环境建议使用构建工具
@@ -1166,7 +1166,6 @@ console.log(props.title)
 defineProps({
     // 基础类型检查
     name: String,
-    age: Number,
 
     // 多个可能的类型
     count: [Number, String],
@@ -1769,7 +1768,8 @@ export function useFetch(url) {
     const error = ref(null)
     const loading = ref(false)
 
-    async function fetch() {
+    // 注意：函数名不要叫 fetch，否则会覆盖全局 fetch 导致无限递归
+    async function fetchData() {
         loading.value = true
         try {
             const response = await fetch(url)
@@ -1785,7 +1785,7 @@ export function useFetch(url) {
         data,
         error,
         loading,
-        fetch
+        fetchData
     }
 }
 ```
@@ -2390,6 +2390,8 @@ counter.$state = { count: 0, name: '计数器' }
 </script>
 ```
 
+> ⚠️ **`$reset()` 的坑**：`$reset()` 只对**选项式 Store**开箱即用；**组合式 Store**（setup 写法）默认不支持，调用会报错。如需在组合式 Store 中使用，需自己实现一个重置方法，或借助 `pinia-plugin-persistedstate` 等插件。
+
 ### 5. 订阅 State 变化
 
 ```vue
@@ -2769,10 +2771,10 @@ interface Props {
 
 const props = defineProps<Props>()
 
-// 带默认值
-const props = withDefaults(defineProps<Props>(), {
-    count: 0
-})
+// 带默认值（withDefaults 为可选 props 提供默认值，与上面二选一）
+// const props = withDefaults(defineProps<Props>(), {
+//     count: 0
+// })
 </script>
 ```
 
@@ -2798,9 +2800,10 @@ emit('delete', 123)
 <script setup lang="ts">
 import { ref, Ref } from 'vue'
 
+// 写法一：显式标注 Ref 类型
 const count: Ref<number> = ref(0)
-// 或者使用类型推断
-const count = ref<number>(0)
+// 写法二：通过泛型让 ref 推断类型（更常用，与上面二选一）
+// const count = ref<number>(0)
 
 const user = ref<{ name: string; age: number }>({
     name: '张三',
@@ -2991,7 +2994,7 @@ const AsyncComp = defineAsyncComponent({
 
 ```vue
 <script setup>
-import { ref, shallowRef, shallowReactive, markRaw } from 'vue'
+import { reactive, shallowRef, shallowReactive, markRaw } from 'vue'
 
 // shallowRef - 只有 .value 是响应式的
 const state = shallowRef({ count: 0 })

@@ -547,6 +547,21 @@ import Calculator, { add, subtract } from './math.mjs';
 | 顶层 this | 指向当前模块 | undefined |
 | 浏览器支持 | 不支持 | 原生支持 |
 
+> 💡 **常见面试问法**：CommonJS 和 ESM 有什么区别？
+> - **加载时机**：CommonJS 在运行时同步加载（`require` 执行到哪行才加载哪个模块）；ESM 在编译阶段静态分析依赖，导入声明会被提升，因此可以做 Tree Shaking（摇树优化，打包时剔除未用代码）。
+> - **导出的是值还是引用**：CommonJS 导出的是值的**拷贝**（导出后模块内再改变量，外部拿到的还是旧值）；ESM 导出的是值的**只读引用**（绑定），模块内变化外部能感知。
+> - **互相引用**：ESM 里可以用 `import` 同步引入 CommonJS 模块；CommonJS 里不能直接 `require` 一个 ESM 模块，需要用动态 `import()`。
+> - **`__dirname` / `__filename`**：ESM 中没有这两个全局变量，需要用 `import.meta.url` 配合 `fileURLToPath` 自己计算。
+>
+> ```js
+> // ESM 中获取 __dirname / __filename 的等价写法
+> import { fileURLToPath } from 'url';
+> import { dirname } from 'path';
+>
+> const __filename = fileURLToPath(import.meta.url);
+> const __dirname = dirname(__filename);
+> ```
+
 ### 4. 模块加载机制
 
 ```js
@@ -653,6 +668,8 @@ try {
 
 // Promise 方式（Node.js 10+）
 const fsPromises = require('fs').promises;
+// 等价写法（推荐）：直接引入 fs/promises 子模块
+// const fsPromises = require('fs/promises');
 
 fsPromises.readFile('./file.txt', 'utf8')
     .then(data => console.log(data))
@@ -732,10 +749,17 @@ fs.readdir('./', (err, files) => {
     console.log(files);  // 文件名数组
 });
 
-// 删除目录
-fs.rmdir('./mydir', { recursive: true }, (err) => {
+// 删除目录（空目录用 rmdir）
+fs.rmdir('./mydir', (err) => {
     if (err) throw err;
     console.log('目录删除成功');
+});
+
+// 递归删除目录及内容（Node.js 14.14+ 推荐用 fs.rm）
+// 注意：fs.rmdir 的 recursive 选项已废弃，旧代码请迁移到 fs.rm
+fs.rm('./mydir', { recursive: true, force: true }, (err) => {
+    if (err) throw err;
+    console.log('目录及内容删除成功');
 });
 ```
 
@@ -760,12 +784,12 @@ readStream.on('error', (err) => {
     console.error('读取错误:', err);
 });
 
-// 管道（pipe）- 复制文件
-const readStream = fs.createReadStream('./source.txt');
-const writeStream = fs.createWriteStream('./dest.txt');
-readStream.pipe(writeStream);
+// 管道（pipe）- 复制文件（变量名换一组，避免与上面重复声明）
+const srcStream = fs.createReadStream('./source.txt');
+const destStream = fs.createWriteStream('./dest.txt');
+srcStream.pipe(destStream);
 
-writeStream.on('finish', () => {
+destStream.on('finish', () => {
     console.log('复制完成');
 });
 ```
@@ -862,7 +886,8 @@ const server = http.createServer((req, res) => {
 **发送 HTTP 请求**
 
 ```js
-const http = require('http');
+// 注意：访问 https:// 地址（443 端口）必须用 https 模块，http 模块只能访问 http://
+const https = require('https');
 
 // GET 请求
 const options = {
@@ -875,7 +900,7 @@ const options = {
     }
 };
 
-const req = http.request(options, (res) => {
+const req = https.request(options, (res) => {
     let data = '';
 
     res.on('data', (chunk) => {
@@ -979,11 +1004,11 @@ myURL.searchParams.append('page', '1');
 myURL.searchParams.set('query', 'newvalue');
 myURL.searchParams.delete('page');
 
-// 格式化 URL
-const myURL = new URL('https://example.com');
-myURL.pathname = '/path';
-myURL.search = '?key=value';
-console.log(myURL.href);  // 'https://example.com/path?key=value'
+// 格式化 URL（注意：换一个变量名，避免与上面的 myURL 重复声明）
+const builtURL = new URL('https://example.com');
+builtURL.pathname = '/path';
+builtURL.search = '?key=value';
+console.log(builtURL.href);  // 'https://example.com/path?key=value'
 ```
 
 ### 6. querystring 模块（查询字符串）
@@ -1082,10 +1107,10 @@ writeStream.on('finish', () => {
 });
 
 // 管道（pipe）
-const readStream = fs.createReadStream('./input.txt');
-const writeStream = fs.createWriteStream('./output.txt');
+const inputStream = fs.createReadStream('./input.txt');
+const outputStream = fs.createWriteStream('./output.txt');
 
-readStream.pipe(writeStream);
+inputStream.pipe(outputStream);
 
 // 链式管道
 const zlib = require('zlib');

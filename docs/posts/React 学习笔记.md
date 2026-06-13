@@ -1995,8 +1995,8 @@ function FormField({ label }) {
 function App() {
     return (
         <>
-            <FormField label="用户名" />  {/* id=":r0:" */}
-            <FormField label="密码" />    {/* id=":r1:" */}
+            <FormField label="用户名" />  {/* 自动生成唯一 id，如 «r0» */}
+            <FormField label="密码" />    {/* 自动生成唯一 id，如 «r1» */}
         </>
     );
 }

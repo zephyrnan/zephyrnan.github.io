@@ -783,6 +783,38 @@ function fetchWithTimeout(url, timeout = 5000) {
 }
 ```
 
+#### 3.5 Promise.allSettled()（ES2020）
+
+```js
+Promise.allSettled(iterable)
+```
+
+**功能**：等待所有 Promise 都「敲定」（无论成功或失败），永远不会 reject。
+
+**与 `Promise.all()` 的区别**：`Promise.all()` 是「一票否决」，只要有一个失败就立即整体失败；`Promise.allSettled()` 会等所有结果都出来，返回每个 Promise 的状态。这是高频面试考点。
+
+**返回值**：一个对象数组，每个元素形如：
+
+- 成功：`{ status: 'fulfilled', value: 值 }`
+- 失败：`{ status: 'rejected', reason: 原因 }`
+
+```js
+let p1 = Promise.resolve('成功1');
+let p2 = Promise.reject('失败了');
+let p3 = Promise.resolve('成功3');
+
+Promise.allSettled([p1, p2, p3]).then(results => {
+    console.log(results);
+    // [
+    //   { status: 'fulfilled', value: '成功1' },
+    //   { status: 'rejected', reason: '失败了' },
+    //   { status: 'fulfilled', value: '成功3' }
+    // ]
+});
+```
+
+> 💡 **使用场景**：需要「尽力而为」地拿到所有结果，且不希望某一个失败导致全部拿不到数据。例如同时加载多个独立的板块，某个接口挂了其他板块照常渲染。
+
 ## 四、Promise 的关键问题
 
 ### 1. 如何改变 Promise 的状态？
@@ -1417,7 +1449,7 @@ async function fetchData() {
     const promiseB = fetch('https://api.example.com/b');
 
     // 并发执行
-    const [dataA, dataB] = await]);
+    const [dataA, dataB] = await Promise.all([promiseA, promiseB]);
 
     return [dataA, dataB];
 }
@@ -1758,7 +1790,7 @@ after1
 3. **Promise API**
    - 构造函数：`new Promise(executor)`
    - 实例方法：`then()`、`catch()`、`finally()`
-   - 静态方法：`resolve()`、`reject()`、`all()`、`race()`
+   - 静态方法：`resolve()`、`reject()`、`all()`、`allSettled()`、`race()`
 
 4. **async/await**
    - Promise 的语法糖

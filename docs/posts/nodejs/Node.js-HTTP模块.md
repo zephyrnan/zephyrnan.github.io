@@ -1240,7 +1240,7 @@ const server = http.createServer((req, res) => {
     if (body.length > maxSize) {
       res.writeHead(413, { 'Content-Type': 'text/plain' });
       res.end('Request Entity Too Large');
-      req.connection.destroy();
+      req.destroy(); // req.connection 已废弃，直接用 req.destroy() 或 req.socket.destroy()
     }
   });
 

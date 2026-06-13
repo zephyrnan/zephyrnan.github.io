@@ -115,7 +115,7 @@ tags:
 > - **默认值问题**: 浏览器默认使用content-box,布局计算复杂
 > - **全局设置**: 推荐在项目开始时全局设置为border-box
 > - **继承性**: box-sizing不继承,需要显式设置
-> - **兼容性**: IE8+支持,使用时加前缀-webkit-box-sizing
+> - **兼容性**: 所有现代浏览器(含IE8+)均原生支持,无需加任何前缀
 > - **百分比宽度**: border-box配合百分比宽度更容易控制布局
 >
 > ```css
@@ -270,7 +270,7 @@ tags:
 | `overflow-x` | 设置水平溢出处理 | `visible`, `hidden`, `scroll`, `auto` |
 | `overflow-y` | 设置垂直溢出处理 | `visible`, `hidden`, `scroll`, `auto` |
 | `overflow-wrap` | 设置长单词换行 | `normal`, `break-word` |
-| `clip` | 裁剪绝对定位元素 | `rect(0, 100px, 100px, 0)` |
+| `clip` | 裁剪绝对定位元素（已废弃，请用 clip-path） | `rect(0, 100px, 100px, 0)` |
 | `clip-path` | 设置裁剪路径 | `circle(50%)`, `polygon(...)` |
 
 ---
@@ -280,6 +280,14 @@ tags:
 | 属性名 | 用处 | 示例值 |
 |--------|------|--------|
 | `position` | 设置定位方式 | `static`, `relative`, `absolute`, `fixed`, `sticky` |
+| `top` | 设置距顶部距离（已定位元素） | `10px`, `50%`, `auto` |
+| `right` | 设置距右边距离 | `10px`, `50%`, `auto` |
+| `bottom` | 设置距底部距离 | `10px`, `50%`, `auto` |
+| `left` | 设置距左边距离 | `10px`, `50%`, `auto` |
+| `inset` | 设置四边距离（简写） | `10px`, `0 10px`, `10px 20px 30px 40px` |
+| `z-index` | 设置层叠顺序 | `1`, `100`, `-1`, `auto` |
+| `float` | 设置浮动 | `left`, `right`, `none` |
+| `clear` | 清除浮动 | `left`, `right`, `both`, `none` |
 
 > 💡 **position 定位详解**:
 > ```css
@@ -440,14 +448,6 @@ tags:
 >   z-index: 999;
 > }
 > ```
-| `top` | 设置距顶部距离（已定位元素） | `10px`, `50%`, `auto` |
-| `right` | 设置距右边距离 | `10px`, `50%`, `auto` |
-| `bottom` | 设置距底部距离 | `10px`, `50%`, `auto` |
-| `left` | 设置距左边距离 | `10px`, `50%`, `auto` |
-| `inset` | 设置四边距离（简写） | `10px`, `0 10px`, `10px 20px 30px 40px` |
-| `z-index` | 设置层叠顺序 | `1`, `100`, `-1`, `auto` |
-| `float` | 设置浮动 | `left`, `right`, `none` |
-| `clear` | 清除浮动 | `left`, `right`, `both`, `none` |
 
 ---
 

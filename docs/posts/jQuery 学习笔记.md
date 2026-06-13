@@ -461,6 +461,21 @@ $('#list').append('<li>新添加的项</li>');  // ✅ 点击同样有效
 > - **性能优化**：100 个 li 只需绑定 1 个事件到 ul 上，而不是 100 个
 > - **原理**：事件冒泡 — 子元素的事件会冒泡到父元素，jQuery 通过 `event.target` 判断实际触发源
 
+> ⚠️ **新手坑：回调里不要用箭头函数取 `this`**
+> jQuery 事件回调中的 `this` 指向触发事件的 DOM 元素，但箭头函数没有自己的 `this`，会继承外层作用域，导致 `$(this)` 取不到当前元素。
+> ```js
+> // ❌ 箭头函数：this 不是当前 li
+> $('#list').on('click', 'li', () => {
+>     $(this).addClass('active');  // this 指向外层，通常是 window
+> });
+>
+> // ✅ 用普通函数；或用 e.currentTarget 取当前元素
+> $('#list').on('click', 'li', function (e) {
+>     $(this).addClass('active');          // 正确
+>     // $(e.currentTarget).addClass('active'); // 等价写法
+> });
+> ```
+
 ### 3. 事件解绑与一次性事件
 
 ```js
