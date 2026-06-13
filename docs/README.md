@@ -1,24 +1,24 @@
 ---
 home: true
 heroImage: /bg.jpg
-tagline: 分享前端与后端开发学习笔记
+tagline: 记录前端、全栈开发与项目实践
 actions:
   - text: 📚 浏览文章
     link: /posts/
     type: primary
-  - text: 👤 关于我
-    link: /about.html
+  - text: 🎨 查看作品
+    link: /portfolio.html
     type: secondary
 features:
   - title: 📘 前端开发
-    details: JavaScript、TypeScript、Vue3、HTML5、CSS3 等前端技术学习笔记
-  - title: 🟢 Node.js
-    details: Node.js 核心模块、Express 框架、MongoDB 数据库等后端技术
-  - title: 🍃 SpringBoot
-    details: Java 后端开发、SpringBoot 框架、RESTful API 设计
-  - title: 🛠️ 开发工具
-    details: Git、GitHub、VuePress 博客搭建等开发工具使用指南
-footer: MIT Licensed | Copyright © 2025 Zephyrnan
+    details: JavaScript、TypeScript、React、Vue3、HTML5、CSS3 等前端技术学习笔记
+  - title: ⚛️ React 与全栈框架
+    details: React Server Components、SSR、SSG、Next.js 与现代全栈框架学习总结
+  - title: 🧭 WebGIS 与项目实践
+    details: WebGIS、Canvas、Web Worker、WASM、大文件处理和空间数据可视化实践
+  - title: 🟢 后端与开发工具
+    details: Node.js、Express、MongoDB、SpringBoot、Git、GitHub 与 VuePress 博客搭建
+footer: MIT Licensed | Copyright © 2026 Zephyrnan
 ---
 
 <style>
@@ -73,11 +73,15 @@ footer: MIT Licensed | Copyright © 2025 Zephyrnan
 
 ## 📝 最新文章
 
+- [React Server Components（RSC）学习笔记](/posts/React%20Server%20Components%EF%BC%88RSC%EF%BC%89%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html)
+- [全栈框架学习笔记](/posts/%E5%85%A8%E6%A0%88%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html)
 - [React 学习笔记](/posts/React%20学习笔记.html)
-- [jQuery 学习笔记](/posts/jQuery%20学习笔记.html)
-- [Node.js + MongoDB 生产级最佳实践指南](/posts/nodejs/Node.js-MongoDB数据库.html)
-- [MongoDB 常用命令速查表](/posts/nodejs/MongoDB数据库基础使用.html)
-- [个人博客搭建指南 - VuePress 2.0 完整教程](/posts/个人博客搭建指南.html)
+- [Tailwind CSS 完整笔记](/posts/Tailwind-CSS-笔记.html)
+- [Windows + WSL + Docker 踩坑与通关指南](/posts/Windows%20+%20WSL%20+%20Docker%20踩坑与通关指南.html)
+
+## 🎨 最新作品
+
+- [面向空间数据的语言驱动手术台](/portfolio.html)
 
 ---
 

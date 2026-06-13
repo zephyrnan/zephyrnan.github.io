@@ -277,51 +277,16 @@ title: 作品集
 
 ---
 
-## 📝 如何添加作品
+## 🚀 项目方向
 
-在这个页面添加你的作品非常简单：
+这些作品主要围绕前端工程化、全栈应用和浏览器端复杂交互展开：
 
-### 1. 准备素材
-将图片或视频文件放到 `docs/.vuepress/public/portfolio/` 目录下
+- **WebGIS 与空间数据处理**：探索 Shapefile、GeoJSON、大文件解析、Web Worker、WASM 和地图可视化能力。
+- **实时协作工具**：通过 Canvas、WebSocket 和状态同步实现多人在线协同编辑体验。
+- **AI 应用实践**：围绕对话式交互、提示词入口和效率工作台进行产品化尝试。
+- **业务系统开发**：结合 Vue3、Node.js、MongoDB 等技术完成监控、管理和数据展示类应用。
 
-### 2. 添加图片作品
-
-```html
-<div class="portfolio-item">
-  <div class="portfolio-media">
-    <img src="/portfolio/你的图片.png" alt="项目截图" />
-  </div>
-  <div class="portfolio-content">
-    <h3 class="portfolio-title">项目名称</h3>
-    <p class="portfolio-desc">项目描述...</p>
-    <div class="portfolio-tags">
-      <span class="portfolio-tag">标签1</span>
-      <span class="portfolio-tag">标签2</span>
-    </div>
-    <div class="portfolio-links">
-      <a href="链接地址" target="_blank" class="portfolio-link">在线预览</a>
-      <a href="源码地址" target="_blank" class="portfolio-link secondary">源代码</a>
-    </div>
-  </div>
-</div>
-```
-
-### 3. 添加视频作品
-
-```html
-<div class="portfolio-item">
-  <div class="portfolio-media video-wrapper">
-    <video src="/portfolio/演示视频.mp4" poster="/portfolio/封面图.png" controls></video>
-  </div>
-  <div class="portfolio-content">
-    <!-- 内容同上 -->
-  </div>
-</div>
-```
-
-### 支持的格式
-- **图片**: PNG, JPG, GIF, WebP
-- **视频**: MP4, WebM (建议 MP4 兼容性最好)
+后续会继续补充更多完整项目、部署链接和复盘总结。
 
 <div style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%); border-radius: 12px;">
   <h3 style="color: #1e88e5; margin-bottom: 15px;">🚀 持续更新中...</h3>
