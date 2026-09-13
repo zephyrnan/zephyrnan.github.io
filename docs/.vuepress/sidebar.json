@@ -4,6 +4,13 @@
     "collapsible": true,
     "children": [
       {
+        "text": "从前端入门到全栈开发：系统化成长路线与职业落地指南",
+        "collapsible": true,
+        "children": [
+          "/posts/前端到全栈系统化学习路线指南.md"
+        ]
+      },
+      {
         "text": "React Server Components（RSC）学习笔记",
         "collapsible": true,
         "children": [

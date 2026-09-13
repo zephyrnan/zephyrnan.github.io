@@ -102,6 +102,14 @@
 ## 🎯 前端开发
 
 <div class="post-nav">
+  <a href="/posts/前端到全栈系统化学习路线指南.html" class="post-card">
+    <div class="card-icon">📄</div>
+    <div class="card-content">
+      <div class="card-title">从前端入门到全栈开发：系统化成长路线与职业落地指南</div>
+      <div class="card-desc">> 老前辈写在前面：  </div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
   <a href="/posts/React Server Components（RSC）学习笔记.html" class="post-card">
     <div class="card-icon">⚛️</div>
     <div class="card-content">
