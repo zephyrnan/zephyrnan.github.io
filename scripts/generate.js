@@ -11,6 +11,8 @@ const DOCS_PATH = path.join(__dirname, '../docs')
 const POSTS_PATH = path.join(DOCS_PATH, 'posts')
 const SIDEBAR_OUTPUT = path.join(DOCS_PATH, '.vuepress/sidebar.json')
 const README_OUTPUT = path.join(POSTS_PATH, 'README.md')
+const HOME_README_OUTPUT = path.join(DOCS_PATH, 'README.md')
+const HOME_LATEST_COUNT = 5
 
 // 分类配置 - 定义分类顺序和图标
 const CATEGORY_CONFIG = {
@@ -374,6 +376,61 @@ function generateReadme(groups) {
 }
 
 /**
+ * 生成/更新首页 docs/README.md 中的最新文章列表
+ * 从全部文章中按日期取最新的 N 篇，仅替换「## 📝 最新文章」到「## 🎨 最新作品」之间的区块
+ */
+function urlEncodePath(link) {
+  // 保留 VuePress 使用的 %20/%EF%BC%88 等编码，并对中文做 URL 编码
+  return link.replace(/\s/g, '%20')
+}
+
+function generateHome(posts) {
+  if (!fs.existsSync(HOME_README_OUTPUT)) {
+    console.log(`   ⚠️ 未找到首页 ${HOME_README_OUTPUT}，跳过`)
+    return
+  }
+
+  // 按日期排序（新的在前），无日期的排最后
+  const sorted = [...posts].sort((a, b) => {
+    if (a.date && b.date) return new Date(b.date) - new Date(a.date)
+    if (a.date) return -1
+    if (b.date) return 1
+    return 0
+  })
+
+  const latest = sorted.slice(0, HOME_LATEST_COUNT)
+  let latestSection = '## 📝 最新文章\n\n'
+  for (const post of latest) {
+    const link = `/posts/${post.path.replace('.md', '.html')}`
+    latestSection += `- [${post.title}](${urlEncodePath(link)})\n`
+  }
+  // 去掉最后一个换行，保留「## 🎨 最新作品」前的空行结构
+  latestSection = latestSection.replace(/\n$/, '')
+
+  const content = fs.readFileSync(HOME_README_OUTPUT, 'utf-8')
+  const startMarker = '## 📝 最新文章'
+  const endMarker = '## 🎨 最新作品'
+
+  const startIdx = content.indexOf(startMarker)
+  const endIdx = content.indexOf(endMarker)
+
+  let newContent = content
+  if (startIdx === -1) {
+    // 首页尚未有「最新文章」区块，追加到文件末尾（通常是最新作品之前由用户自行维护）
+    console.log('   ⚠️ 首页未找到「最新文章」区块，无法更新')
+    return
+  } else if (endIdx !== -1 && endIdx > startIdx) {
+    newContent = content.slice(0, startIdx) + latestSection + '\n\n' + content.slice(endIdx)
+  } else {
+    // 没有最新作品区块，直接替换到末尾
+    newContent = content.slice(0, startIdx) + latestSection + '\n'
+  }
+
+  fs.writeFileSync(HOME_README_OUTPUT, newContent, 'utf-8')
+  console.log(`   已更新首页最新文章 (${latest.length} 篇): ${HOME_README_OUTPUT}`)
+}
+
+/**
  * 主函数
  */
 function main() {
@@ -383,6 +440,10 @@ function main() {
   console.log('📂 扫描文章目录...')
   const posts = scanPosts(POSTS_PATH)
   console.log(`   找到 ${posts.length} 篇文章\n`)
+
+  // 更新首页最新文章
+  console.log('🏠 更新首页最新文章...')
+  generateHome(posts)
 
   // 按分类分组
   const groups = groupByCategory(posts)
@@ -398,7 +459,7 @@ function main() {
   fs.writeFileSync(SIDEBAR_OUTPUT, JSON.stringify(sidebar, null, 2), 'utf-8')
   console.log(`   已写入: ${SIDEBAR_OUTPUT}\n`)
 
-  // 生成 README.md
+  // 生成 README.md（文章索引页）
   console.log('📝 生成文章列表页...')
   const readme = generateReadme(groups)
   fs.writeFileSync(README_OUTPUT, readme, 'utf-8')
