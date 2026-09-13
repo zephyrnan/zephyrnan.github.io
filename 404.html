@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme='dark'] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background-color: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const useChoice = localStorage.getItem('vuepress-color-scheme')
+      const systemStatus =
+        'matchMedia' in window
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false
+
+      if (useChoice === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (useChoice === 'dark' || systemStatus) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <link rel="icon" href="/bg.jpg"><title>楠渡余生</title><meta name="description" content="楠渡余生 的个人博客">
+    <link rel="preload" href="/assets/style-DuN6zq8t.css" as="style"><link rel="stylesheet" href="/assets/style-DuN6zq8t.css">
+    <link rel="modulepreload" href="/assets/app-sdi46srt.js"><link rel="modulepreload" href="/assets/404.html-CwfQsVdg.js">
+    <link rel="prefetch" href="/assets/about.html-Da4LNg3L.js" as="script"><link rel="prefetch" href="/assets/guestbook.html-C36qiNVq.js" as="script"><link rel="prefetch" href="/assets/portfolio.html-DdaOOSaV.js" as="script"><link rel="prefetch" href="/assets/index.html-DqZQVV6m.js" as="script"><link rel="prefetch" href="/assets/博客指南.html-F2EnEQHO.js" as="script"><link rel="prefetch" href="/assets/AJAX 学习笔记.html-DtaKU_H3.js" as="script"><link rel="prefetch" href="/assets/Axios完整学习笔记.html-V7PAcTCe.js" as="script"><link rel="prefetch" href="/assets/CSS 属性速查手册.html-CJYKk-SF.js" as="script"><link rel="prefetch" href="/assets/express的使用.html-Db3ZnBvg.js" as="script"><link rel="prefetch" href="/assets/GitHub新手完全指南.html-BAxtRx4N.js" as="script"><link rel="prefetch" href="/assets/HTML5 与 CSS 综合学习笔记.html-CRhO2Y9W.js" as="script"><link rel="prefetch" href="/assets/JavaScript 学习笔记.html-B63TcqYO.js" as="script"><link rel="prefetch" href="/assets/jQuery 学习笔记.html-DxElPP2Z.js" as="script"><link rel="prefetch" href="/assets/Node.js 学习笔记.html-Bs_OdZUe.js" as="script"><link rel="prefetch" href="/assets/Promise 学习笔记.html-DM3cEeLo.js" as="script"><link rel="prefetch" href="/assets/React Server Components（RSC）学习笔记.html-DL700RzV.js" as="script"><link rel="prefetch" href="/assets/React 学习笔记.html-CKNGy4nh.js" as="script"><link rel="prefetch" href="/assets/index.html-M1UegqwN.js" as="script"><link rel="prefetch" href="/assets/SpringBoot 完整学习笔记.html-CoJLM6l_.js" as="script"><link rel="prefetch" href="/assets/Tailwind-CSS-笔记.html-Yt2MUS_c.js" as="script"><link rel="prefetch" href="/assets/TypeScript 快速上手.html-BEiE3OlY.js" as="script"><link rel="prefetch" href="/assets/Vue3 学习笔记.html-DKKRmVBA.js" as="script"><link rel="prefetch" href="/assets/Windows _ WSL _ Docker 踩坑与通关指南.html-KfCMpaRU.js" as="script"><link rel="prefetch" href="/assets/个人博客搭建指南.html-BWaokPbU.js" as="script"><link rel="prefetch" href="/assets/全栈框架学习笔记.html-Bog7fLA7.js" as="script"><link rel="prefetch" href="/assets/前端到全栈系统化学习路线指南.html-BdwdicuU.js" as="script"><link rel="prefetch" href="/assets/nextjs-app-router-最佳实践.html-CMdEhsoS.js" as="script"><link rel="prefetch" href="/assets/跨域与服务端组件数据预取.html-C7GspWtG.js" as="script"><link rel="prefetch" href="/assets/prisma-schema-全栈类型生成.html-Bg7VuNms.js" as="script"><link rel="prefetch" href="/assets/supabase-rls-行级安全策略.html-BhyyQvUt.js" as="script"><link rel="prefetch" href="/assets/cloudflare-基础防护与cdn.html-25dSOpTx.js" as="script"><link rel="prefetch" href="/assets/vercel-自动化部署与环境变量.html-CdQtsOfX.js" as="script"><link rel="prefetch" href="/assets/vercel-ai-sdk-流式输出实战.html-Di-XPxKP.js" as="script"><link rel="prefetch" href="/assets/saas-订阅制用户表结构设计.html-CYUhjmd9.js" as="script"><link rel="prefetch" href="/assets/stripe-webhook-接入避坑指南.html-C_ZpA_QP.js" as="script"><link rel="prefetch" href="/assets/resend-事务性邮件模板.html-BLfpCSvs.js" as="script"><link rel="prefetch" href="/assets/sentry-前端异常捕获与报警.html-pm-E8Yx7.js" as="script"><link rel="prefetch" href="/assets/MongoDB数据库基础使用.html-BzZ_nIOe.js" as="script"><link rel="prefetch" href="/assets/Node.js-Express框架.html-Dw0gBA2m.js" as="script"><link rel="prefetch" href="/assets/Node.js-HTTP模块.html-CCuAZ6wT.js" as="script"><link rel="prefetch" href="/assets/Node.js-MongoDB数据库.html-CgXaJt_x.js" as="script"><link rel="prefetch" href="/assets/Node.js-NPM包管理.html-CObx9qye.js" as="script"><link rel="prefetch" href="/assets/Node.js-文件系统模块.html-fDbl55cX.js" as="script"><link rel="prefetch" href="/assets/Node.js-模块化设计.html-5GeCCQoU.js" as="script"><link rel="prefetch" href="/assets/index.html-DCeiX5Fb.js" as="script"><link rel="prefetch" href="/assets/Valine.min-BFEZSN5P.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container" vp-container data-v-33d3430e><main class="page" data-v-33d3430e><div vp-content data-v-33d3430e><h1 data-v-33d3430e>404</h1><blockquote data-v-33d3430e>There&#39;s nothing here.</blockquote><a class="route-link" href="/" data-v-33d3430e>Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/assets/app-sdi46srt.js" defer></script>
+  </body>
+</html>
